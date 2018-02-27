@@ -28,4 +28,7 @@ dependencies {
 
     //Material Calendar
     compile 'com.prolificinteractive:material-calendarview:1.4.3'
+
+    //Circle Image
+    compile 'de.hdodenhof:circleimageview:2.2.0'
 }
