@@ -31,4 +31,5 @@ dependencies {
 
     //Circle Image
     compile 'de.hdodenhof:circleimageview:2.2.0'
+    implementation 'com.android.support:design:26.1.0'
 }

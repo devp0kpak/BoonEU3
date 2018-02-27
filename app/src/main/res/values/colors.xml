@@ -5,6 +5,9 @@
     <color name="colorPrimaryDark">#FFA300</color>
     <color name="colorAccent">#F57C00</color>
 
+    <!-- Custom Layout -->
+    <color name="color_title_bar">#FF9800</color>
+
     <!-- Custom Calendar Theme Color -->
     <color name="color_text_day">#FFFFFF</color>
     <color name="color_text_day_enable">#ffd17f</color>

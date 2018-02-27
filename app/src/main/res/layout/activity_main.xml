@@ -114,6 +114,7 @@
                 android:gravity="center">
 
                 <ImageView
+                    android:id="@+id/iv_setting"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:src="@drawable/ic_more_vert"
@@ -170,6 +171,5 @@
         <include layout="@layout/view_item_event"/>
 
     </LinearLayout>
-
 
 </LinearLayout>
