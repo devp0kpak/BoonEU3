@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="network.dhammakaya.booneu3.Activity.SettingActivity">
 
     <LinearLayout
@@ -30,6 +31,168 @@
             android:textColor="@color/white"
             android:textSize="26sp"
             android:text="ตั้งค่า" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="100" >
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight="15"
+                android:layout_gravity="center_vertical"
+                android:tint="@color/blue_grey_200"
+                android:src="@drawable/ic_view"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="85"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp">
+
+                <network.dhammakaya.booneu3.View.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="รูปแบบ"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <network.dhammakaya.booneu3.View.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Calendar"
+                    android:textColor="@color/grey_400"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="100" >
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight="15"
+                android:layout_gravity="center_vertical"
+                android:tint="@color/blue_grey_200"
+                android:src="@drawable/ic_language"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="85"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp">
+
+                <network.dhammakaya.booneu3.View.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ประเทศ"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <network.dhammakaya.booneu3.View.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Belgium"
+                    android:textColor="@color/grey_400"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="100" >
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight="15"
+                android:layout_gravity="center_vertical"
+                android:tint="@color/blue_grey_200"
+                android:src="@drawable/ic_translate"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="85"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp">
+
+                <network.dhammakaya.booneu3.View.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ภาษา"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <network.dhammakaya.booneu3.View.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="English"
+                    android:textColor="@color/grey_400"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="100" >
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight="15"
+                android:layout_gravity="center_vertical"
+                android:tint="@color/blue_grey_200"
+                android:src="@drawable/ic_info"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="85"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp">
+
+                <network.dhammakaya.booneu3.View.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="เกี่ยวกับเรา"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
 
     </LinearLayout>
 
