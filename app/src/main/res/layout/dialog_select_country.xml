@@ -2,39 +2,48 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:padding="15dp"
     android:orientation="vertical">
 
     <network.dhammakaya.booneu3.View.CustomTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:textSize="25sp"
-        android:text="เลือกมุมมอง"/>
+        style="@style/CustomTitleTextDialog"
+        android:text="เลือกประเทศ"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="5dp"
-        android:padding="5dp"
-        android:background="@drawable/bg_btn_setting_view">
+        android:weightSum="2">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:tint="@color/orange_500"
-            android:src="@drawable/ic_calendar" />
+        <LinearLayout
+            style="@style/CustomLayoutButtonCountry">
 
-        <network.dhammakaya.booneu3.View.CustomTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/orange_500"
-            android:layout_marginLeft="5dp"
-            android:textSize="25sp"
-            android:text="ปฏิทิน"/>
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:src="@drawable/austria" />
+
+            <network.dhammakaya.booneu3.View.CustomTextView
+                style="@style/CustomTextCountry"
+                android:text="Austria"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/CustomLayoutButtonCountry">
+
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+
+                android:src="@drawable/belgium" />
+
+            <network.dhammakaya.booneu3.View.CustomTextView
+                style="@style/CustomTextCountry"
+                android:text="Belgium"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -42,27 +51,181 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="5dp"
-        android:padding="5dp"
-        android:background="@drawable/bg_btn_setting_view">
+        android:weightSum="2">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:tint="@color/orange_500"
-            android:src="@drawable/ic_list" />
+        <LinearLayout
+            style="@style/CustomLayoutButtonCountry">
 
-        <network.dhammakaya.booneu3.View.CustomTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/orange_500"
-            android:layout_marginLeft="5dp"
-            android:textSize="25sp"
-            android:text="รายการ"/>
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:src="@drawable/denmark" />
+
+            <network.dhammakaya.booneu3.View.CustomTextView
+                style="@style/CustomTextCountry"
+                android:text="Denmark"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/CustomLayoutButtonCountry">
+
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:src="@drawable/france" />
+
+            <network.dhammakaya.booneu3.View.CustomTextView
+                style="@style/CustomTextCountry"
+                android:text="France"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <LinearLayout
+            style="@style/CustomLayoutButtonCountry">
+
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:src="@drawable/germany" />
+
+            <network.dhammakaya.booneu3.View.CustomTextView
+                style="@style/CustomTextCountry"
+                android:text="Germany"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/CustomLayoutButtonCountry">
+
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:src="@drawable/italy" />
+
+            <network.dhammakaya.booneu3.View.CustomTextView
+                style="@style/CustomTextCountry"
+                android:text="Italy"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <LinearLayout
+            style="@style/CustomLayoutButtonCountry">
+
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:src="@drawable/malta" />
+
+            <network.dhammakaya.booneu3.View.CustomTextView
+                style="@style/CustomTextCountry"
+                android:text="Malta"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/CustomLayoutButtonCountry">
+
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:src="@drawable/netherlands" />
+
+            <network.dhammakaya.booneu3.View.CustomTextView
+                style="@style/CustomTextCountry"
+                android:text="Netherlands"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <LinearLayout
+            style="@style/CustomLayoutButtonCountry">
+
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:src="@drawable/norway" />
+
+            <network.dhammakaya.booneu3.View.CustomTextView
+                style="@style/CustomTextCountry"
+                android:text="Norway"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/CustomLayoutButtonCountry">
+
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:src="@drawable/sweden" />
+
+            <network.dhammakaya.booneu3.View.CustomTextView
+                style="@style/CustomTextCountry"
+                android:text="Sweden"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <LinearLayout
+            style="@style/CustomLayoutButtonCountry">
+
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:src="@drawable/switzerland" />
+
+            <network.dhammakaya.booneu3.View.CustomTextView
+                style="@style/CustomTextCountry"
+                android:text="Switzerland"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/CustomLayoutButtonCountry">
+
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:src="@drawable/united_kingdom" />
+
+            <network.dhammakaya.booneu3.View.CustomTextView
+                style="@style/CustomTextCountry"
+                android:text="United Kingdom"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 
 </LinearLayout>

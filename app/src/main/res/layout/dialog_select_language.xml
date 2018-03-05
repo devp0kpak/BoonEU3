@@ -1,6 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp"
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <network.dhammakaya.booneu3.View.CustomTextView
+        style="@style/CustomTitleTextDialog"
+        android:text="เลือกภาษา"/>
+
+    <LinearLayout
+       style="@style/CustomLayoutButtonLanguage">
+
+        <ImageView
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:src="@drawable/thailand"/>
+
+        <network.dhammakaya.booneu3.View.CustomTextView
+            style="@style/CustomTextLanguage"
+            android:text="ภาษาไทย"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/CustomLayoutButtonLanguage">
+
+        <ImageView
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:src="@drawable/united_kingdom" />
+
+        <network.dhammakaya.booneu3.View.CustomTextView
+            style="@style/CustomTextLanguage"
+            android:text="English"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

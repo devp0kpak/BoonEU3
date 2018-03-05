@@ -41,6 +41,7 @@
         android:padding="15dp">
 
         <LinearLayout
+            android:id="@+id/btn_setting_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -80,6 +81,7 @@
 
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/btn_setting_country"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -119,6 +121,7 @@
 
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/btn_setting_language"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -158,6 +161,7 @@
 
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/btn_about"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -189,10 +193,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
-
-
-
 
     </LinearLayout>
 
