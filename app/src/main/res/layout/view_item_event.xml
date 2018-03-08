@@ -108,7 +108,5 @@
         android:layout_gravity="right"
         android:textSize="18sp"
         android:text="ยังไม่เริ่มกิจกรรม"/>
-    
-
 
 </FrameLayout>

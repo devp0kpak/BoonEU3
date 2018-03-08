@@ -12,6 +12,26 @@
         <item name="android:textColor">@color/mcv_text_date</item>
     </style>
 
+    <!-- Theme Title Bar -->
+
+    <style name="ThemeTitleBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:background">@color/color_title_bar</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:weightSum">100</item>
+    </style>
+
+    <style name="ButtonBack">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">20</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:tint">@color/white</item>
+        <item name="android:src">@drawable/ic_arrow_back_black_24dp</item>
+    </style>
+
+
 
     <!-- Dialog Title Text -->
     <style name="CustomTitleTextDialog">

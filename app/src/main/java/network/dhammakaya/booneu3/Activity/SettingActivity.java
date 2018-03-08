@@ -68,7 +68,8 @@ public class SettingActivity extends Activity implements View.OnClickListener {
 
     //---------------------------------- Start Activity Zone -------------------------------------//
     private void startActivityAbout() {
-
+        Intent layoutAbout = new Intent(this, AboutActivity.class);
+        startActivity(layoutAbout);
     }
 
     //---------------------------------- Set View Zone -------------------------------------------//
@@ -96,8 +97,6 @@ public class SettingActivity extends Activity implements View.OnClickListener {
 
         if(v == iv_back_from_setting){
             finish();
-            Intent layoutMain = new Intent(this, MainActivity.class);
-            startActivity(layoutMain);
         }
 
         if(v == btn_setting_view){

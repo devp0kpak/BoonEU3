@@ -8,20 +8,11 @@
     tools:context="network.dhammakaya.booneu3.Activity.SettingActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@color/color_title_bar"
-        android:orientation="horizontal"
-        android:weightSum="100">
+        style="@style/ThemeTitleBar">
 
         <ImageView
             android:id="@+id/iv_back_from_setting"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="20"
-            android:layout_gravity="center_vertical"
-            android:tint="@color/white"
-            android:src="@drawable/ic_arrow_back_black_24dp" />
+            style="@style/ButtonBack" />
 
         <network.dhammakaya.booneu3.View.CustomTextView
             android:layout_width="0dp"
@@ -186,7 +177,7 @@
                 <network.dhammakaya.booneu3.View.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="เกี่ยวกับเรา"
+                    android:text="เกี่ยวกับ Application"
                     android:textColor="@color/black"
                     android:textSize="24sp" />
 
