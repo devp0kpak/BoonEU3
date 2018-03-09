@@ -21,7 +21,7 @@ import network.dhammakaya.booneu3.Dates.OneDayDecorator;
 import network.dhammakaya.booneu3.R;
 import network.dhammakaya.booneu3.View.CustomTextView;
 
-public class MainActivity extends Activity implements View.OnClickListener,OnDateSelectedListener {
+public class MainActivity extends Activity implements View.OnClickListener{
 
     private MaterialCalendarView mcv;
 
@@ -29,10 +29,6 @@ public class MainActivity extends Activity implements View.OnClickListener,OnDat
     private CustomTextView tv_day;
     private CustomTextView tv_month;
     private CustomTextView tv_year;
-
-    private int day=0,month=0,year=0;
-
-    private final OneDayDecorator oneDayDecorator = new OneDayDecorator();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +42,6 @@ public class MainActivity extends Activity implements View.OnClickListener,OnDat
     }
 
     private void customCalendar() {
-        //mcv.setTopbarVisible(false);
 
         mcv.state().edit()
                 .setFirstDayOfWeek(Calendar.MONDAY)
@@ -57,6 +52,7 @@ public class MainActivity extends Activity implements View.OnClickListener,OnDat
 
         Calendar calendar = Calendar.getInstance();
         mcv.setDateSelected(calendar.getTime(), true);
+        mcv.addDecorator(new OneDayDecorator());
 
         mcv.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
@@ -65,9 +61,6 @@ public class MainActivity extends Activity implements View.OnClickListener,OnDat
                 Calendar c = date.getCalendar();
                 String date_click = df.format(c.getTime());
                 Toast.makeText(MainActivity.this, "Click : " + date_click, Toast.LENGTH_SHORT).show();
-                year = c.get(Calendar.YEAR);
-                month = c.get(Calendar.MONTH);
-                day = c.get(Calendar.DATE);
             }
         });
 
@@ -98,11 +91,5 @@ public class MainActivity extends Activity implements View.OnClickListener,OnDat
             startActivity(layoutSetting);
         }
 
-    }
-
-    @Override
-    public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-        oneDayDecorator.setDate(date.getDate());
-        widget.invalidateDecorators();
     }
 }

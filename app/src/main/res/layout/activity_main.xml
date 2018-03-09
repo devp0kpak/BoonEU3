@@ -154,25 +154,42 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="40"
-        android:orientation="vertical">
+        android:layout_weight="40">
 
-        <network.dhammakaya.booneu3.View.CustomTextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:background="@color/grey_200"
-            android:gravity="center"
-            android:text="กิจกรรม"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <include layout="@layout/view_item_event" />
+            <network.dhammakaya.booneu3.View.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@color/grey_200"
+                android:gravity="center"
+                android:text="กิจกรรม"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
-        <include layout="@layout/view_item_event" />
+            <include layout="@layout/view_item_event" />
 
-    </LinearLayout>
+            <include layout="@layout/view_item_event" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:elevation="50dp"
+            android:background="@drawable/bg_btn_favorite"
+            android:src="@drawable/ic_favorite"
+            android:tint="@color/white"
+            android:layout_gravity="right|bottom" />
+
+    </FrameLayout>
 
 </LinearLayout>
