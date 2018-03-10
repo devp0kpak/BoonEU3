@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="100"
+    tools:context="network.dhammakaya.booneu3.Activity.LoginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="97"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_logo_app"
+            android:transitionName="log o_app"/>
+
+            <network.dhammakaya.booneu3.View.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/orange_400"
+                android:gravity="center"
+                android:text="BOON EU"/>
+
+            <LinearLayout
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:padding="7dp"
+                android:weightSum="100"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:background="@drawable/bg_btn_line_login">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="20"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_line"/>
+
+                <network.dhammakaya.booneu3.View.CustomTextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="80"
+                    android:paddingLeft="10dp"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:text="ล็อกอินด้วย LINE"/>
+
+            </LinearLayout>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:layout_weight="3"
+        android:gravity="bottom">
+
+        <network.dhammakaya.booneu3.View.CustomTextView
+            android:id="@+id/tv_skip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:text="ข้ามหน้าล็อกอิน" />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
