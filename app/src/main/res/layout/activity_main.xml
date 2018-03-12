@@ -173,13 +173,14 @@
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
-            <include layout="@layout/view_item_event" />
+            <include android:id="@+id/item_event" layout="@layout/view_item_event" />
 
             <include layout="@layout/view_item_event" />
 
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/iv_btn_favorite"
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_margin="10dp"

@@ -26,7 +26,8 @@
         <activity android:name=".Activity.AboutActivity" />
         <activity android:name=".Activity.FavoriteActivity" />
         <activity android:name=".Activity.LoginActivity" />
-        <activity android:name=".Activity.MainActivity"/>
+        <activity android:name=".Activity.MainActivity" />
+        <activity android:name=".Activity.DetailActivity"></activity>
     </application>
 
 </manifest>
