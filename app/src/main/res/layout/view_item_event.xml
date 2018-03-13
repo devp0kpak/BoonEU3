@@ -29,8 +29,6 @@
 
         </LinearLayout>
 
-
-
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -46,51 +44,27 @@
                 android:textColor="@color/black"
                 android:text="พิธีบูชาข้าวพระ"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <network.dhammakaya.booneu3.View.CustomTextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="3dp">
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center_vertical"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/ic_location"
+                android:drawableTint="@color/grey_700"
+                android:textSize="16sp"
+                android:text="Wat Phra Dhammakaya Frankfurt"/>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="15dp"
-                    android:layout_gravity="center_vertical"
-                    android:tint="@color/grey_700"
-                    android:src="@drawable/ic_location"/>
-
-                <network.dhammakaya.booneu3.View.CustomTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:textSize="16sp"
-                    android:text="Wat Phra Dhammakaya Frankfurt"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <network.dhammakaya.booneu3.View.CustomTextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="3dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="15dp"
-                    android:layout_gravity="center_vertical"
-                    android:tint="@color/grey_700"
-                    android:src="@drawable/ic_clock"/>
-
-                <network.dhammakaya.booneu3.View.CustomTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:textSize="16sp"
-                    android:text="9.00 - 18.00"/>
-
-            </LinearLayout>
-
-
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center_vertical"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/ic_clock"
+                android:drawableTint="@color/grey_700"
+                android:textSize="16sp"
+                android:text="9.00 - 18.00"/>
 
         </LinearLayout>
 

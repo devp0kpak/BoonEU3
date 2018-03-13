@@ -45,37 +45,31 @@
                 android:textColor="@color/white"
                 android:text="2561"/>
         </LinearLayout>
-        
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="40"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_margin="20dp"
-            android:padding="5dp"
-            android:weightSum="100"
-            android:orientation="horizontal"
-            android:background="@drawable/bg_btn_favorite_detail">
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_weight="30"
-                android:layout_height="match_parent"
-                android:tint="@color/red"
-                android:src="@drawable/ic_favorite" />
+            android:layout_height="match_parent"
+            android:paddingRight="15dp"
+            android:gravity="center|right">
 
             <network.dhammakaya.booneu3.View.CustomTextView
-                android:layout_width="0dp"
-                android:layout_weight="70"
-                android:layout_height="match_parent"
-                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:gravity="center|left"
                 android:textSize="20sp"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/ic_favorite"
+                android:drawableTint="@color/red"
                 android:textColor="@color/red"
-                android:text="รายการโปรก" />
+                android:background="@drawable/bg_btn_favorite_detail"
+                android:text="รายการโปรด" />
 
         </LinearLayout>
-
-
 
     </LinearLayout>
 
@@ -118,30 +112,33 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginTop="15dp"
-            android:textSize="25sp"
+            android:textSize="40sp"
             android:textColor="@color/black"
             android:textStyle="bold"
-            android:text="Evenr Name"/>
+            android:text="Event Name"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginTop="5dp"
             android:gravity="center">
 
             <network.dhammakaya.booneu3.View.CustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:drawableStart="@drawable/ic_location"
                 android:drawableTint="@color/grey_400"
                 android:drawablePadding="5dp"
-                android:textSize="22sp"
+                android:textSize="25sp"
                 android:textColor="@color/blue_700"
                 android:text="location name for event"/>
 
             <network.dhammakaya.booneu3.View.CustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:layout_marginLeft="10dp"
@@ -156,11 +153,13 @@
         <network.dhammakaya.booneu3.View.CustomTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:drawableStart="@drawable/ic_clock"
             android:drawableTint="@color/grey_400"
             android:layout_gravity="center"
+            android:layout_marginTop="5dp"
             android:drawablePadding="5dp"
-            android:textSize="18sp"
+            android:textSize="25sp"
             android:textColor="@color/grey_600"
             android:text="09.00-18.00"/>
 
@@ -169,17 +168,18 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="15dp">
 
             <network.dhammakaya.booneu3.View.CustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
+                android:gravity="center"
                 android:background="@drawable/bg_btn_detail"
-                android:drawablePadding="10dp"
+                android:drawablePadding="5dp"
                 android:drawableStart="@drawable/ic_assignment"
-                android:drawableTint="@color/orange_700"
-                android:textColor="@color/orange_700"
+                android:drawableTint="@color/orange_600"
+                android:textColor="@color/orange_600"
                 android:textSize="20sp"
                 android:text="รายละเอียด"/>
 
@@ -188,22 +188,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:padding="10dp"
+                android:gravity="center"
                 android:background="@drawable/bg_btn_detail"
-                android:drawablePadding="10dp"
+                android:drawablePadding="5dp"
                 android:drawableStart="@drawable/ic_event_note"
-                android:drawableTint="@color/orange_700"
-                android:textColor="@color/orange_700"
+                android:drawableTint="@color/orange_600"
+                android:textColor="@color/orange_600"
                 android:textSize="20sp"
                 android:text="กำหนดการ"/>
 
         </LinearLayout>
 
     </LinearLayout>
-
-
-
-
-
-
 
 </LinearLayout>

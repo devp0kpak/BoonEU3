@@ -21,9 +21,11 @@ import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import network.dhammakaya.booneu3.Dates.OneDayDecorator;
 import network.dhammakaya.booneu3.R;
+import network.dhammakaya.booneu3.View.CustomDateView;
 import network.dhammakaya.booneu3.View.CustomTextView;
 
 public class MainActivity extends Activity implements View.OnClickListener{
@@ -44,6 +46,10 @@ public class MainActivity extends Activity implements View.OnClickListener{
     private CustomTextView item_setting;
     private CustomTextView item_line_login;
 
+    private String date,month,year;
+
+    private CustomDateView cs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,9 +57,20 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
         initView();
         setBottomSheet();
+        setCurrentDay();
         initListener();
         customCalendar();
 
+    }
+
+    private void setCurrentDay() {
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat dayFormat = new SimpleDateFormat("dd");
+        SimpleDateFormat monthFormat = new SimpleDateFormat("MMMM");
+        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
+        tv_day.setText(dayFormat.format(c));
+        tv_month.setText(monthFormat.format(c));
+        tv_year.setText(yearFormat.format(c));
     }
 
     private void customCalendar() {
@@ -72,10 +89,13 @@ public class MainActivity extends Activity implements View.OnClickListener{
         mcv.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-                DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                DateFormat dayFormat = new SimpleDateFormat("dd");
+                DateFormat monthFormat = new SimpleDateFormat("MMMM");
+                DateFormat yearFormat = new SimpleDateFormat("yyyy");
                 Calendar c = date.getCalendar();
-                String date_click = df.format(c.getTime());
-                Toast.makeText(MainActivity.this, "Click : " + date_click, Toast.LENGTH_SHORT).show();
+                tv_day.setText(dayFormat.format(c.getTime()));
+                tv_month.setText(monthFormat.format(c.getTime()));
+                tv_year.setText(yearFormat.format(c.getTime()));
             }
         });
 
