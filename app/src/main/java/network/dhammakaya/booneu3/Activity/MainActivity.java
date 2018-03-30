@@ -6,12 +6,10 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
-import android.text.Layout;
+import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
@@ -23,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import network.dhammakaya.booneu3.Adapter.RecyclerViewAdapter;
 import network.dhammakaya.booneu3.Dates.OneDayDecorator;
 import network.dhammakaya.booneu3.R;
 import network.dhammakaya.booneu3.View.CustomDateView;
@@ -40,7 +39,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
     private BottomSheetDialog bottomSheetDialog;
 
-    private View item_event;
+    private RecyclerView rv_event;
 
     //Bottom Sheet
     private CustomTextView item_setting;
@@ -60,7 +59,12 @@ public class MainActivity extends Activity implements View.OnClickListener{
         setCurrentDay();
         initListener();
         customCalendar();
+        setRecyclerView();
 
+    }
+
+    private void setRecyclerView() {
+        rv_event.setAdapter(new RecyclerViewAdapter(this));
     }
 
     private void setCurrentDay() {
@@ -101,25 +105,30 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
     }
 
-
+    private void setBottomSheet() {
+        bottomSheetDialog = new BottomSheetDialog(MainActivity.this);
+        View bottomSheetView = getLayoutInflater().inflate(R.layout.view_bottomsheet_menu, null);
+        bottomSheetDialog.setContentView(bottomSheetView);
+        BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from((View) bottomSheetView.getParent());
+        bottomSheetBehavior.setPeekHeight((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 300, getResources().getDisplayMetrics()));
+        item_setting = (CustomTextView) bottomSheetView.findViewById(R.id.item_setting);
+        item_line_login = (CustomTextView) bottomSheetView.findViewById(R.id.item_line_login);
+    }
 
     private void initView() {
         mcv = (MaterialCalendarView) findViewById(R.id.calendarView);
-
         iv_setting = (ImageView) findViewById(R.id.iv_setting);
         iv_btn_favorite = (ImageView) findViewById(R.id.iv_btn_favorite);
         tv_day = (CustomTextView) findViewById(R.id.tv_day);
         tv_month = (CustomTextView) findViewById(R.id.tv_month);
         tv_year = (CustomTextView) findViewById(R.id.tv_year);
-
-        item_event = (View) findViewById(R.id.item_event);
+        rv_event = (RecyclerView) findViewById(R.id.rv_event);
     }
 
     private void initListener() {
 
         iv_setting.setOnClickListener(this);
         iv_btn_favorite.setOnClickListener(this);
-        item_event.setOnClickListener(this);
         item_setting.setOnClickListener(this);
         item_line_login.setOnClickListener(this);
 
@@ -137,27 +146,11 @@ public class MainActivity extends Activity implements View.OnClickListener{
             startActivity(layoutFavorite);
         }
 
-        if (v == item_event) {
-            Intent layoutDetail = new Intent(this, DetailActivity.class);
-            startActivity(layoutDetail);
-        }
-
         if (v == item_setting) {
             bottomSheetDialog.dismiss();
             Intent layoutSetting = new Intent(this, SettingActivity.class);
             startActivity(layoutSetting);
         }
 
-    }
-
-    private void setBottomSheet() {
-        bottomSheetDialog = new BottomSheetDialog(MainActivity.this);
-        View bottomSheetView = getLayoutInflater().inflate(R.layout.view_bottomsheet_menu, null);
-        bottomSheetDialog.setContentView(bottomSheetView);
-        BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from((View) bottomSheetView.getParent());
-        bottomSheetBehavior.setPeekHeight((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 300, getResources().getDisplayMetrics()));
-
-        item_setting = (CustomTextView) bottomSheetView.findViewById(R.id.item_setting);
-        item_line_login = (CustomTextView) bottomSheetView.findViewById(R.id.item_line_login);
     }
 }

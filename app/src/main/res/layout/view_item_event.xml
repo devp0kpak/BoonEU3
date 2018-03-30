@@ -21,6 +21,7 @@
             android:layout_weight="23">
 
             <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_event_image"
                 android:layout_width="80dp"
                 android:layout_height="match_parent"
                 android:paddingTop="8dp"
@@ -38,6 +39,7 @@
             android:gravity="center_vertical">
 
             <network.dhammakaya.booneu3.View.CustomTextView
+                android:id="@+id/tv_event_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="23sp"
@@ -45,6 +47,7 @@
                 android:text="พิธีบูชาข้าวพระ"/>
 
             <network.dhammakaya.booneu3.View.CustomTextView
+                android:id="@+id/tv_event_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -56,6 +59,7 @@
                 android:text="Wat Phra Dhammakaya Frankfurt"/>
 
             <network.dhammakaya.booneu3.View.CustomTextView
+                android:id="@+id/tv_event_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
