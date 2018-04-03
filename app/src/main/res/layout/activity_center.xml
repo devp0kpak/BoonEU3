@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="network.dhammakaya.booneu3.Activity.AboutActivity">
+    tools:context="network.dhammakaya.booneu3.Activity.CenterActivity">
 
     <LinearLayout
         style="@style/ThemeTitleBar">
 
         <ImageView
-            android:id="@+id/iv_back_from_center"
+            android:id="@+id/iv_back_from_about"
             style="@style/ButtonBack" />
 
         <network.dhammakaya.booneu3.View.CustomTextView
@@ -21,10 +21,8 @@
             android:gravity="center_vertical"
             android:textColor="@color/white"
             android:textSize="26sp"
-            android:text="เกี่ยวกับ Application" />
+            android:text="Detail Center" />
 
     </LinearLayout>
-
-
 
 </LinearLayout>

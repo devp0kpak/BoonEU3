@@ -29,7 +29,8 @@
         <activity android:name=".Activity.MainActivity" />
         <activity android:name=".Activity.DetailActivity" />
         <activity android:name=".Adapter.RecyclerViewAdapter" />
-        <activity android:name=".Activity.ViewImageActivity"></activity>
+        <activity android:name=".Activity.ViewImageActivity" />
+        <activity android:name=".Activity.CenterActivity"></activity>
     </application>
 
 </manifest>
