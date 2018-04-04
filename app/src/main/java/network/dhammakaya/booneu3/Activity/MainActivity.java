@@ -1,7 +1,9 @@
 package network.dhammakaya.booneu3.Activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
@@ -33,6 +35,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
     private ImageView iv_setting;
     private ImageView iv_btn_favorite;
+    private ImageView im_country;
+    private CustomTextView tv_country_name;
     private CustomTextView tv_day;
     private CustomTextView tv_month;
     private CustomTextView tv_year;
@@ -46,14 +50,16 @@ public class MainActivity extends Activity implements View.OnClickListener{
     private CustomTextView item_line_login;
 
     private String date,month,year;
+    private String country = "Defult";
 
     private CustomDateView cs;
+    private Object stringFromFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        getStringFromFile();
         initView();
         setBottomSheet();
         setCurrentDay();
@@ -61,6 +67,35 @@ public class MainActivity extends Activity implements View.OnClickListener{
         customCalendar();
         setRecyclerView();
 
+        //putStringToFile();
+        setTextFromFile();
+        setFlagCountry();
+    }
+
+
+
+    private void setTextFromFile() {
+        tv_country_name.setText(country);
+    }
+
+    public void getStringFromFile() {
+        SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
+        country = f_data.getString("country", "Austria_F");
+    }
+
+    private void setFlagCountry() {
+        if(country.equals("Austria")){ im_country.setImageResource(R.drawable.austria);}
+        if(country.equals("Belgium")){ im_country.setImageResource(R.drawable.belgium);}
+        if(country.equals("Denmark")){ im_country.setImageResource(R.drawable.denmark);}
+        if(country.equals("France")){ im_country.setImageResource(R.drawable.france);}
+        if(country.equals("Germany")){ im_country.setImageResource(R.drawable.germany);}
+        if(country.equals("Italy")){ im_country.setImageResource(R.drawable.italy);}
+        if(country.equals("Malta")){ im_country.setImageResource(R.drawable.malta);}
+        if(country.equals("Netherlands")){ im_country.setImageResource(R.drawable.netherlands);}
+        if(country.equals("Norway")){ im_country.setImageResource(R.drawable.norway);}
+        if(country.equals("Sweden")){ im_country.setImageResource(R.drawable.sweden);}
+        if(country.equals("Switzerland")){ im_country.setImageResource(R.drawable.switzerland);}
+        if(country.equals("United Kingdom")){ im_country.setImageResource(R.drawable.united_kingdom);}
     }
 
     private void setRecyclerView() {
@@ -116,12 +151,18 @@ public class MainActivity extends Activity implements View.OnClickListener{
     }
 
     private void initView() {
+
         mcv = (MaterialCalendarView) findViewById(R.id.calendarView);
+
         iv_setting = (ImageView) findViewById(R.id.iv_setting);
         iv_btn_favorite = (ImageView) findViewById(R.id.iv_btn_favorite);
+        im_country = (ImageView) findViewById(R.id.im_country);
+
+        tv_country_name = (CustomTextView) findViewById(R.id.tv_country_name);
         tv_day = (CustomTextView) findViewById(R.id.tv_day);
         tv_month = (CustomTextView) findViewById(R.id.tv_month);
         tv_year = (CustomTextView) findViewById(R.id.tv_year);
+
         rv_event = (RecyclerView) findViewById(R.id.rv_event);
     }
 

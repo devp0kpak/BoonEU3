@@ -102,6 +102,7 @@
                     android:textSize="24sp" />
 
                 <network.dhammakaya.booneu3.View.CustomTextView
+                    android:id="@+id/tv_country_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Belgium"

@@ -8,27 +8,26 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import network.dhammakaya.booneu3.R;
+import network.dhammakaya.booneu3.View.PhotoViewHolder;
 import network.dhammakaya.booneu3.View.ViewHolder;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
+public class PhotoAdapter extends RecyclerView.Adapter<PhotoViewHolder> {
 
     private Context context;
 
-    public RecyclerViewAdapter(Context context){
+    public PhotoAdapter(Context context) {
         this.context = context;
     }
-
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.view_item_event, parent, false);
-        return new ViewHolder(context,v);
+    public PhotoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(context).inflate(R.layout.view_item_picture, parent, false);
+        return new PhotoViewHolder(v,context);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.tv_event_name.setText("Boocharkawphra : "+position);
+    public void onBindViewHolder(@NonNull PhotoViewHolder holder, int position) {
         holder.itemView.setTag(position);
-
     }
 
     @Override

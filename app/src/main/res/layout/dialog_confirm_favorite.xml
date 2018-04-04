@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15dp"
+    android:orientation="vertical">
+
+    <network.dhammakaya.booneu3.View.CustomTextView
+        style="@style/CustomTitleTextDialog"
+        android:text="เพิ่มในรายการโปรด"/>
+
+    <LinearLayout
+        style="@style/CustomLayoutButtonConfirmFavoriteGreen">
+
+        <ImageView
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:tint="@color/green_500"
+            android:src="@drawable/ic_check_circle"/>
+
+        <network.dhammakaya.booneu3.View.CustomTextView
+            style="@style/CustomTextLanguage"
+            android:textColor="@color/green_500"
+            android:text="ตกลง"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/CustomLayoutButtonConfirmFavoriteRed">
+
+        <ImageView
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:tint="@color/red_500"
+            android:src="@drawable/ic_cancel" />
+
+        <network.dhammakaya.booneu3.View.CustomTextView
+            style="@style/CustomTextLanguage"
+            android:textColor="@color/red_500"
+            android:text="ยกเลิก"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

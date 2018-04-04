@@ -25,4 +25,11 @@
 
     </LinearLayout>
 
+    <network.dhammakaya.booneu3.View.CustomTextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textSize="21sp"
+        android:text="Coming soon..."/>
+
 </LinearLayout>
