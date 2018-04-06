@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.github.chrisbanes.photoview.PhotoView;
+import com.squareup.picasso.Picasso;
 
 import network.dhammakaya.booneu3.R;
 
@@ -29,7 +30,7 @@ public class ViewImageActivity extends AppCompatActivity {
         String mImageUri = getIntent().getExtras().getString("imageUri");
 
         PhotoView photoView = (PhotoView) findViewById(R.id.photo_view);
-        photoView.setImageURI(Uri.parse(mImageUri));
+        Picasso.get().load(mImageUri).into(photoView);
 
     }
 }

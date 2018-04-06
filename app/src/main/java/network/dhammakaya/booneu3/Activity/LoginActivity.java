@@ -5,13 +5,14 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import network.dhammakaya.booneu3.R;
 import network.dhammakaya.booneu3.View.CustomTextView;
 
 public class LoginActivity extends Activity implements View.OnClickListener{
 
-    private CustomTextView tv_skip;
+    private LinearLayout li_skip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,16 +25,16 @@ public class LoginActivity extends Activity implements View.OnClickListener{
     }
 
     private void initView() {
-        tv_skip = (CustomTextView) findViewById(R.id.tv_skip);
+        li_skip = (LinearLayout) findViewById(R.id.li_skip);
     }
 
     private void initListener() {
-        tv_skip.setOnClickListener(this);
+        li_skip.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        if(v == tv_skip) {
+        if(v == li_skip) {
             finish();
             Intent pageMain = new Intent(this, MainActivity.class);
             startActivity(pageMain);

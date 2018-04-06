@@ -189,6 +189,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
         if (v == item_setting) {
             bottomSheetDialog.dismiss();
+            finish();
             Intent layoutSetting = new Intent(this, SettingActivity.class);
             startActivity(layoutSetting);
         }

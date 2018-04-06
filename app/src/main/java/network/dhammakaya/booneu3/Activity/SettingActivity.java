@@ -120,13 +120,6 @@ public class SettingActivity extends Activity implements View.OnClickListener {
         dialog.getWindow().setLayout(600, 500);
     }
 
-
-    //---------------------------------- Start Activity Zone -------------------------------------//
-    private void startActivityAbout() {
-        Intent layoutAbout = new Intent(this, AboutActivity.class);
-        startActivity(layoutAbout);
-    }
-
     //---------------------------------- Set View Zone -------------------------------------------//
     private void initView() {
         iv_back_from_setting = (ImageView) findViewById(R.id.iv_back_from_setting);
@@ -154,10 +147,12 @@ public class SettingActivity extends Activity implements View.OnClickListener {
 
         if(v == iv_back_from_setting){
             finish();
+            Intent mainIntent = new Intent(this,MainActivity.class);
+            startActivity(mainIntent);
         }
 
         if(v == btn_setting_view){
-            startDialogSettingView();
+            //startDialogSettingView();
         }
 
         if(v == btn_setting_country){
@@ -165,11 +160,12 @@ public class SettingActivity extends Activity implements View.OnClickListener {
         }
 
         if(v == btn_setting_language){
-            startDialogSettingLanguage();
+            //startDialogSettingLanguage();
         }
 
         if(v == btn_about){
-            startActivityAbout();
+            Intent layoutAbout = new Intent(this, AboutActivity.class);
+            startActivity(layoutAbout);
         }
 
         if(v == btn_austria){
@@ -225,6 +221,7 @@ public class SettingActivity extends Activity implements View.OnClickListener {
             SharedPreferences.Editor editor = f_data.edit();
             editor.putString("country", "Malta");
             editor.commit();
+            finish();
             restartApplication();
         }
 
@@ -271,10 +268,11 @@ public class SettingActivity extends Activity implements View.OnClickListener {
     }
 
     private void restartApplication(){
+        finish();
         Intent i = getBaseContext().getPackageManager().
                 getLaunchIntentForPackage(getBaseContext().getPackageName());
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
+
     }
 }

@@ -23,9 +23,9 @@ public class SplashScreenActivity extends Activity {
 
         runnable = new Runnable() {
             public void run() {
+                finish();
                 Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
                 startActivity(intent);
-                finish();
             }
         };
 

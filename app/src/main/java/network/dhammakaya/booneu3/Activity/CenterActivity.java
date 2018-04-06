@@ -21,7 +21,7 @@ public class CenterActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void initView() {
-        iv_back_from_center = (ImageView) findViewById(R.id.iv_back_from_about);
+        iv_back_from_center = (ImageView) findViewById(R.id.iv_back_from_center);
     }
 
     private void initListener() {
