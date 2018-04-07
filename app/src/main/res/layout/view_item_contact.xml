@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="45dp"
+    android:padding="10dp"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:background="@drawable/bg_btn_contact">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:background="@drawable/bg_oval_gray"
+        android:backgroundTint="@color/grey_500"
+        android:tint="@color/white"
+        android:src="@drawable/ic_call" />
+
+    <network.dhammakaya.booneu3.View.CustomTextView
+        android:layout_marginLeft="10dp"
+        android:textSize="22sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="08-0808-0800"/>
+
+    <network.dhammakaya.booneu3.View.CustomTextView
+        android:layout_marginLeft="10dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:textSize="22sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_oval_gray"
+        android:backgroundTint="@color/red_500"
+        android:textColor="@color/white"
+        android:text="ศูนย์"/>
+
+
+</LinearLayout>

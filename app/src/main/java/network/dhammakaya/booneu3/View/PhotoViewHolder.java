@@ -23,14 +23,13 @@ public class PhotoViewHolder extends RecyclerView.ViewHolder {
         this.context = context;
         item_image = (ImageView) itemView.findViewById(R.id.item_image);
 
-        item_image.setTag(R.drawable.boon_img);    //When you change the drawable
-        final int drawableId = (Integer)item_image.getTag();
+        final String URL = "http://booncalendar.dhammakaya.network/images/boocharkhawphra.jpg";
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, ViewImageActivity.class);
-                intent.putExtra("imageUri", drawableId);
+                intent.putExtra("imageUri", URL);
                 context.startActivity(intent);
             }
         });
