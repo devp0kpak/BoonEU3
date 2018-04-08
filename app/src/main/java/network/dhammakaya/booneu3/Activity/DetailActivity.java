@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import network.dhammakaya.booneu3.Adapter.ContactAdapter;
 import network.dhammakaya.booneu3.Adapter.PhotoAdapter;
 import network.dhammakaya.booneu3.R;
 import network.dhammakaya.booneu3.View.CustomTextView;
@@ -45,10 +46,10 @@ import network.dhammakaya.booneu3.View.CustomTextView;
      }
 
      private void setRecyclerViewContact() {
-
+         rv_contact.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+         rv_contact.setHasFixedSize(true);
+         rv_contact.setAdapter(new ContactAdapter(getApplicationContext()));
      }
-
-
 
      private void startDialogConfirmFavorite() {
          AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
