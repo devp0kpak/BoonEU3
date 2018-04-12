@@ -1,9 +1,13 @@
 package network.dhammakaya.booneu3.Activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
@@ -12,6 +16,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
@@ -40,6 +46,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
     private CustomTextView tv_day;
     private CustomTextView tv_month;
     private CustomTextView tv_year;
+    private CustomTextView tv_user_id;
 
     private BottomSheetDialog bottomSheetDialog;
 
@@ -55,6 +62,9 @@ public class MainActivity extends Activity implements View.OnClickListener{
     private CustomDateView cs;
     private Object stringFromFile;
 
+    //get Extra Value
+    private String display_name;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,20 +77,38 @@ public class MainActivity extends Activity implements View.OnClickListener{
         customCalendar();
         setRecyclerView();
 
-        //putStringToFile();
+        //getExtraValue();
+        //setTextFromExtra();
+
         setTextFromFile();
         setFlagCountry();
+
     }
 
+    private void getExtraValue() {
+        display_name = getIntent().getExtras().getString("display_name","null");
+    }
 
+    public void getStringFromFile() {
+        SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
+        country = f_data.getString("country", "Austria");
+    }
 
     private void setTextFromFile() {
         tv_country_name.setText(country);
     }
 
-    public void getStringFromFile() {
-        SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
-        country = f_data.getString("country", "Austria_F");
+    @SuppressLint("ResourceAsColor")
+    private void setTextFromExtra() {
+        if (!display_name.equals("null")){
+            tv_user_id.setText(display_name);
+            tv_user_id.setTextColor(getResources().getColor(R.color.green_500));
+            tv_user_id.setBackgroundColor(getResources().getColor(R.color.white));
+            tv_user_id.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
+        } else {
+            tv_user_id.setText("Don't login");
+        }
+
     }
 
     private void setFlagCountry() {
@@ -162,6 +190,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
         tv_day = (CustomTextView) findViewById(R.id.tv_day);
         tv_month = (CustomTextView) findViewById(R.id.tv_month);
         tv_year = (CustomTextView) findViewById(R.id.tv_year);
+        tv_user_id = (CustomTextView) findViewById(R.id.tv_user_id);
 
         rv_event = (RecyclerView) findViewById(R.id.rv_event);
     }

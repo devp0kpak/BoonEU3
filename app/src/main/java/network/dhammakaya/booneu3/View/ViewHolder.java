@@ -17,6 +17,7 @@ import network.dhammakaya.booneu3.R;
 
 public class ViewHolder extends RecyclerView.ViewHolder {
 
+    //view of item
     public CircleImageView iv_event_image;
     public CustomTextView tv_event_name;
     public CustomTextView tv_event_location;

@@ -44,10 +44,14 @@ public class LoginActivity extends Activity implements View.OnClickListener{
         switch (result.getResponseCode()) {
 
             case SUCCESS:
-
+                finish();
                 Intent transitionIntent = new Intent(this, MainActivity.class);
                 transitionIntent.putExtra("line_profile", result.getLineProfile());
                 transitionIntent.putExtra("line_credential", result.getLineCredential());
+                transitionIntent.putExtra("display_name", result.getLineProfile().getDisplayName());
+                transitionIntent.putExtra("status_message", result.getLineProfile().getStatusMessage());
+                transitionIntent.putExtra("user_id", result.getLineProfile().getUserId());
+                transitionIntent.putExtra("picture_url", result.getLineProfile().getPictureUrl().toString());
                 startActivity(transitionIntent);
                 break;
 
@@ -75,15 +79,16 @@ public class LoginActivity extends Activity implements View.OnClickListener{
     public void onClick(View v) {
         if(v == li_skip) {
             finish();
-            Intent pageMain = new Intent(this, MainActivity.class);
-            startActivity(pageMain);
+            finishActivity (0);
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity (intent);
+
         }
         if(v == btn_login_line) {
             try {
                 // App to App Login
                 Intent LoginIntent = LineLoginApi.getLoginIntent(v.getContext(), Constants.CHANNEL_ID);
                 startActivityForResult(LoginIntent, REQUEST_CODE);
-
             } catch (Exception e) {
                 Log.e("ERROR", e.toString());
             }

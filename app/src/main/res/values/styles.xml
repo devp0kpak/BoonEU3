@@ -9,8 +9,9 @@
 
     </style>
 
-    <style name="CustomTextAppearance" parent="TextAppearance.MaterialCalendarWidget.Date">
+    <style name="CustomTextAppearance">
         <item name="android:textColor">@color/mcv_text_date</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
     <!-- Theme Title Bar -->

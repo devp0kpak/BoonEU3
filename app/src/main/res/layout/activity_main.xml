@@ -148,15 +148,16 @@
                     android:id="@+id/calendarView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:mcv_dateTextAppearance="@style/CustomTextAppearance"
-                    app:mcv_firstDayOfWeek="monday"
-                    app:mcv_headerTextAppearance="@style/CustomTextAppearance"
-                    app:mcv_selectionColor="@color/white"
-                    app:mcv_showOtherDates="all"
                     app:mcv_tileHeight="match_parent"
                     app:mcv_tileSize="match_parent"
                     app:mcv_tileWidth="match_parent"
-                    app:mcv_weekDayTextAppearance="@style/CustomTextAppearance" />
+                    app:mcv_dateTextAppearance="@style/CustomTextAppearance"
+                    app:mcv_weekDayTextAppearance="@style/CustomTextAppearance"
+                    app:mcv_headerTextAppearance="@style/CustomTextAppearance"
+                    app:mcv_selectionColor="@color/white"
+                    app:mcv_arrowColor="@color/white"
+                    app:mcv_firstDayOfWeek="monday"
+                    app:mcv_showOtherDates="all" />
 
             </LinearLayout>
 
@@ -164,6 +165,7 @@
         </LinearLayout>
 
         <network.dhammakaya.booneu3.View.CustomTextView
+            android:id="@+id/tv_user_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="5dp"
