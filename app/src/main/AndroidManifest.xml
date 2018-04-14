@@ -22,10 +22,9 @@
         <activity android:name=".Activity.FavoriteActivity" />
         <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.MainActivity" />
-        <activity android:name=".Activity.SettingActivity" />
         <activity android:name=".Activity.DetailActivity" />
         <activity android:name=".Activity.ViewImageActivity" />
-        <activity android:name=".Activity.CenterActivity"></activity>
+        <activity android:name=".Activity.CenterActivity"/>
     </application>
 
 </manifest>

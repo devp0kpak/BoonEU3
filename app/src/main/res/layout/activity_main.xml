@@ -81,6 +81,7 @@
                     android:paddingTop="25dp">
 
                     <LinearLayout
+                        android:id="@+id/btn_flag"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:background="@drawable/bg_flag"
@@ -179,7 +180,7 @@
             android:drawableTint="@color/red"
             android:textColor="@color/red"
             android:background="#FFB300"
-            android:text="Don't Login"/>
+            android:text="Not Logged in"/>
 
     </FrameLayout>
 
@@ -194,15 +195,62 @@
             android:orientation="vertical"
             android:weightSum="100">
 
-            <network.dhammakaya.booneu3.View.CustomTextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="12"
-                android:background="@color/grey_200"
+                android:orientation="horizontal"
                 android:gravity="center"
-                android:text="กิจกรรม"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                android:background="@color/grey_200">
+
+                <network.dhammakaya.booneu3.View.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="กิจกรรม"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <network.dhammakaya.booneu3.View.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="วันที่"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <network.dhammakaya.booneu3.View.CustomTextView
+                    android:id="@+id/tv_day_e"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="30"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <network.dhammakaya.booneu3.View.CustomTextView
+                    android:id="@+id/tv_month_e"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="ธันวาคม"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <network.dhammakaya.booneu3.View.CustomTextView
+                    android:id="@+id/tv_year_e"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="2561"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_event"
@@ -210,9 +258,18 @@
                 android:layout_height="0dp"
                 android:layout_weight="88"
                 app:layoutManager="LinearLayoutManager"
-                tools:listitem="@layout/view_item_event">
+                android:visibility="visible"
+                tools:listitem="@layout/view_item_event"/>
 
-            </android.support.v7.widget.RecyclerView>
+            <network.dhammakaya.booneu3.View.CustomTextView
+                android:id="@+id/empty_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="88"
+                android:gravity="center"
+                android:visibility="gone"
+                android:textSize="24sp"
+                android:text="No Event" />
 
         </LinearLayout>
 
@@ -226,6 +283,7 @@
             android:background="@drawable/bg_btn_favorite"
             android:src="@drawable/ic_favorite"
             android:tint="@color/white"
+            android:visibility="gone"
             android:layout_gravity="right|bottom" />
 
     </FrameLayout>

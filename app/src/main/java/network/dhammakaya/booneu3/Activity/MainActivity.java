@@ -2,6 +2,7 @@ package network.dhammakaya.booneu3.Activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,6 +17,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,14 +48,34 @@ public class MainActivity extends Activity implements View.OnClickListener{
     private CustomTextView tv_day;
     private CustomTextView tv_month;
     private CustomTextView tv_year;
+    private CustomTextView tv_day_e;
+    private CustomTextView tv_month_e;
+    private CustomTextView tv_year_e;
     private CustomTextView tv_user_id;
+
+    //------ For Country -----//
+    private LinearLayout btn_austria;
+    private LinearLayout btn_belgium;
+    private LinearLayout btn_denmark;
+    private LinearLayout btn_france;
+    private LinearLayout btn_germany;
+    private LinearLayout btn_italy;
+    private LinearLayout btn_malta;
+    private LinearLayout btn_netherlands;
+    private LinearLayout btn_norway;
+    private LinearLayout btn_sweden;
+    private LinearLayout btn_switzerland;
+    private LinearLayout btn_uk;
+
+    private LinearLayout btn_flag;
 
     private BottomSheetDialog bottomSheetDialog;
 
     private RecyclerView rv_event;
 
     //Bottom Sheet
-    private CustomTextView item_setting;
+    private CustomTextView item_exit;
+    private CustomTextView item_about;
     private CustomTextView item_line_login;
 
     private String date,month,year;
@@ -138,6 +160,9 @@ public class MainActivity extends Activity implements View.OnClickListener{
         tv_day.setText(dayFormat.format(c));
         tv_month.setText(monthFormat.format(c));
         tv_year.setText(yearFormat.format(c));
+        tv_day_e.setText(dayFormat.format(c));
+        tv_month_e.setText(monthFormat.format(c));
+        tv_year_e.setText(yearFormat.format(c));
     }
 
     private void customCalendar() {
@@ -163,6 +188,9 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 tv_day.setText(dayFormat.format(c.getTime()));
                 tv_month.setText(monthFormat.format(c.getTime()));
                 tv_year.setText(yearFormat.format(c.getTime()));
+                tv_day_e.setText(dayFormat.format(c.getTime()));
+                tv_month_e.setText(monthFormat.format(c.getTime()));
+                tv_year_e.setText(yearFormat.format(c.getTime()));
             }
         });
 
@@ -174,13 +202,53 @@ public class MainActivity extends Activity implements View.OnClickListener{
         bottomSheetDialog.setContentView(bottomSheetView);
         BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from((View) bottomSheetView.getParent());
         bottomSheetBehavior.setPeekHeight((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 300, getResources().getDisplayMetrics()));
-        item_setting = (CustomTextView) bottomSheetView.findViewById(R.id.item_setting);
+        item_exit = (CustomTextView) bottomSheetView.findViewById(R.id.item_exit);
+        item_about = (CustomTextView) bottomSheetView.findViewById(R.id.item_about);
         item_line_login = (CustomTextView) bottomSheetView.findViewById(R.id.item_line_login);
+    }
+
+    private void startDialogSettingCountry() {
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+        View mCountry = getLayoutInflater().inflate(R.layout.dialog_select_country, null);
+        mBuilder.setView(mCountry);
+        AlertDialog dialog = mBuilder.create();
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+        dialog.getWindow().setLayout(900, 1100);
+
+        btn_austria = (LinearLayout) mCountry.findViewById(R.id.btn_austria);
+        btn_belgium = (LinearLayout) mCountry.findViewById(R.id.btn_belgium);
+        btn_denmark = (LinearLayout) mCountry.findViewById(R.id.btn_denmark);
+        btn_france = (LinearLayout) mCountry.findViewById(R.id.btn_france);
+        btn_germany = (LinearLayout) mCountry.findViewById(R.id.btn_germany);
+        btn_italy = (LinearLayout) mCountry.findViewById(R.id.btn_italy);
+        btn_malta = (LinearLayout) mCountry.findViewById(R.id.btn_malta);
+        btn_netherlands = (LinearLayout) mCountry.findViewById(R.id.btn_netherlands);
+        btn_norway = (LinearLayout) mCountry.findViewById(R.id.btn_norway);
+        btn_sweden = (LinearLayout) mCountry.findViewById(R.id.btn_sweden);
+        btn_switzerland = (LinearLayout) mCountry.findViewById(R.id.btn_switzerland);
+        btn_uk = (LinearLayout) mCountry.findViewById(R.id.btn_uk);
+
+        btn_austria.setOnClickListener(this);
+        btn_belgium.setOnClickListener(this);
+        btn_denmark.setOnClickListener(this);
+        btn_france.setOnClickListener(this);
+        btn_germany.setOnClickListener(this);
+        btn_italy.setOnClickListener(this);
+        btn_malta.setOnClickListener(this);
+        btn_netherlands.setOnClickListener(this);
+        btn_norway.setOnClickListener(this);
+        btn_sweden.setOnClickListener(this);
+        btn_switzerland.setOnClickListener(this);
+        btn_uk.setOnClickListener(this);
     }
 
     private void initView() {
 
         mcv = (MaterialCalendarView) findViewById(R.id.calendarView);
+
+        btn_flag = (LinearLayout) findViewById(R.id.btn_flag);
 
         iv_setting = (ImageView) findViewById(R.id.iv_setting);
         iv_btn_favorite = (ImageView) findViewById(R.id.iv_btn_favorite);
@@ -190,16 +258,23 @@ public class MainActivity extends Activity implements View.OnClickListener{
         tv_day = (CustomTextView) findViewById(R.id.tv_day);
         tv_month = (CustomTextView) findViewById(R.id.tv_month);
         tv_year = (CustomTextView) findViewById(R.id.tv_year);
+        tv_day_e = (CustomTextView) findViewById(R.id.tv_day_e);
+        tv_month_e = (CustomTextView) findViewById(R.id.tv_month_e);
+        tv_year_e = (CustomTextView) findViewById(R.id.tv_year_e);
         tv_user_id = (CustomTextView) findViewById(R.id.tv_user_id);
 
         rv_event = (RecyclerView) findViewById(R.id.rv_event);
+
+
     }
 
     private void initListener() {
 
+        btn_flag.setOnClickListener(this);
         iv_setting.setOnClickListener(this);
         iv_btn_favorite.setOnClickListener(this);
-        item_setting.setOnClickListener(this);
+        item_exit.setOnClickListener(this);
+        item_about.setOnClickListener(this);
         item_line_login.setOnClickListener(this);
 
     }
@@ -211,17 +286,130 @@ public class MainActivity extends Activity implements View.OnClickListener{
             bottomSheetDialog.show();
         }
 
+        if (v == btn_flag){
+            startDialogSettingCountry();
+        }
+
         if (v == iv_btn_favorite) {
             Intent layoutFavorite = new Intent(this, FavoriteActivity.class);
             startActivity(layoutFavorite);
         }
 
-        if (v == item_setting) {
+        if (v == item_about) {
             bottomSheetDialog.dismiss();
-            finish();
-            Intent layoutSetting = new Intent(this, SettingActivity.class);
-            startActivity(layoutSetting);
+            Intent AboutIntent = new Intent(this, AboutActivity.class);
+            startActivity(AboutIntent);
         }
 
+        if (v == item_exit) {
+            bottomSheetDialog.dismiss();
+            finish();
+            System.exit(0);
+        }
+
+        if(v == btn_austria){
+            SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = f_data.edit();
+            editor.putString("country", "Austria");
+            editor.commit();
+            restartApplication();
+        }
+
+        if(v == btn_belgium){
+            SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = f_data.edit();
+            editor.putString("country", "Belgium");
+            editor.commit();
+            restartApplication();
+        }
+
+        if(v == btn_denmark){
+            SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = f_data.edit();
+            editor.putString("country", "Denmark");
+            editor.commit();
+            restartApplication();
+        }
+
+        if(v == btn_france){
+            SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = f_data.edit();
+            editor.putString("country", "France");
+            editor.commit();
+            restartApplication();
+        }
+
+        if(v == btn_germany){
+            SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = f_data.edit();
+            editor.putString("country", "Germany");
+            editor.commit();
+            restartApplication();
+        }
+
+        if(v == btn_italy){
+            SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = f_data.edit();
+            editor.putString("country", "Italy");
+            editor.commit();
+            restartApplication();
+        }
+
+        if(v == btn_malta){
+            SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = f_data.edit();
+            editor.putString("country", "Malta");
+            editor.commit();
+            finish();
+            restartApplication();
+        }
+
+        if(v == btn_netherlands){
+            SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = f_data.edit();
+            editor.putString("country", "Netherlands");
+            editor.commit();
+            restartApplication();
+        }
+
+        if(v == btn_norway){
+            SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = f_data.edit();
+            editor.putString("country", "Norway");
+            editor.commit();
+            restartApplication();
+        }
+
+        if(v == btn_sweden){
+            SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = f_data.edit();
+            editor.putString("country", "Sweden");
+            editor.commit();
+            restartApplication();
+        }
+
+        if(v == btn_switzerland){
+            SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = f_data.edit();
+            editor.putString("country", "Switzerland");
+            editor.commit();
+            restartApplication();
+        }
+
+        if(v == btn_uk){
+            SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = f_data.edit();
+            editor.putString("country", "United Kingdom");
+            editor.commit();
+            restartApplication();
+        }
+
+    }
+
+    private void restartApplication(){
+        finish();
+        Intent i = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
     }
 }
