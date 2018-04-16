@@ -13,6 +13,8 @@ import java.util.Date;
  */
 
 public class CustomDateView {
+    //Normal SET
+
     public static String setDate(String strDate)
     {
 
@@ -32,8 +34,68 @@ public class CustomDateView {
             e.printStackTrace();
         }
 
-        return String.format("%s-%s-%s", day,month,year);//Thai get +543
+        return String.format("%s-%s-%s", day,month,year);
     }
+
+    public static String setDay(String strDay)
+    {
+
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
+        int day=0;
+        try {
+            Date date = df.parse(strDay);
+            Calendar c = Calendar.getInstance();
+            c.setTime(date);
+            day = c.get(Calendar.DATE);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return String.format("%s", day);
+    }
+
+    public static String setMonth(String strMonth)
+    {
+
+        DateFormat df = new SimpleDateFormat("yyyy-MMMMM-dd");
+
+        int month=0;
+        try {
+            Date date = df.parse(strMonth);
+            Calendar c = Calendar.getInstance();
+            c.setTime(date);
+
+            month = c.get(Calendar.MONTH);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return String.format("%s", month);
+    }
+
+    public static String setYear(String strYear)
+    {
+
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
+        int year=0;
+        try {
+            Date date = df.parse(strYear);
+            Calendar c = Calendar.getInstance();
+            c.setTime(date);
+            year = c.get(Calendar.YEAR);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return String.format("%s", year);
+    }
+
+    //THAI SET
 
     public static String dateThai(String strDate)
     {
@@ -81,9 +143,11 @@ public class CustomDateView {
 
     public static String monthThai(String strDate)
     {
-        String Months[] = { "January", "February", "March", "April",
-                "May", "June", "July", "August",
-                "September", "October", "November", "December" };
+        String Months[] =
+                {
+                        "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน",
+                        "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม",
+                        "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"};
 
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 

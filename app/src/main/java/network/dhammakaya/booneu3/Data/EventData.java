@@ -7,6 +7,7 @@ public class EventData implements Parcelable {
 
     private String event_name;
     private String center_name_en;
+    private String calendar_date;
     private String time_start;
     private String time_stop;
     private String image_url;
@@ -18,6 +19,10 @@ public class EventData implements Parcelable {
     }
 
     public String getCenter_name_en() { return center_name_en; }
+
+    public String getCalendar_date() {
+        return calendar_date;
+    }
 
     public String getTime_start() {
         return time_start;
@@ -38,6 +43,7 @@ public class EventData implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(this.event_name);
         parcel.writeString(this.center_name_en);
+        parcel.writeString(this.calendar_date);
         parcel.writeString(this.time_start);
         parcel.writeString(this.time_stop);
         parcel.writeString(this.image_url);
@@ -49,6 +55,7 @@ public class EventData implements Parcelable {
     protected EventData(Parcel in) {
         this.event_name = in.readString();
         this.center_name_en = in.readString();
+        this.calendar_date = in.readString();
         this.time_start = in.readString();
         this.time_stop = in.readString();
         this.image_url = in.readString();

@@ -99,7 +99,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private CustomTextView item_about;
     private CustomTextView item_line_login;
 
-    private String date, month, year;
     private String country = "Defult";
 
     private CustomDateView cs;

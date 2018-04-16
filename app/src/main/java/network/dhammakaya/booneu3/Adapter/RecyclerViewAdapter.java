@@ -42,6 +42,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
 
         Picasso.get().load(eventData.get(position).getImage_url()).into(holder.iv_event_image);
 
+        holder.btn_event.setTag(R.id.btn_event, eventData.get(position));
+
     }
 
     @Override

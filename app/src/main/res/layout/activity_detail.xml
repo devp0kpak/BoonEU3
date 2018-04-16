@@ -15,6 +15,7 @@
             style="@style/ButtonBack"/>
 
         <network.dhammakaya.booneu3.View.CustomTextView
+            android:id="@+id/tv_day"
             android:layout_width="0dp"
             android:layout_weight="13"
             android:layout_height="match_parent"
@@ -32,6 +33,7 @@
             android:orientation="vertical">
 
             <network.dhammakaya.booneu3.View.CustomTextView
+                android:id="@+id/tv_month"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
@@ -39,6 +41,7 @@
                 android:text="ธันวาคม"/>
 
             <network.dhammakaya.booneu3.View.CustomTextView
+                android:id="@+id/tv_year"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
@@ -91,6 +94,7 @@
         </android.support.v7.widget.RecyclerView>
 
         <network.dhammakaya.booneu3.View.CustomTextView
+            android:id="@+id/tv_event_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -109,6 +113,7 @@
             android:gravity="center">
 
             <network.dhammakaya.booneu3.View.CustomTextView
+                android:id="@+id/tv_center_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -135,6 +140,7 @@
         </LinearLayout>
 
         <network.dhammakaya.booneu3.View.CustomTextView
+            android:id="@+id/tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
