@@ -6,38 +6,53 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
+import java.io.IOException;
+import java.lang.reflect.Type;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import network.dhammakaya.booneu3.Adapter.RecyclerViewAdapter;
+import network.dhammakaya.booneu3.Data.EventData;
 import network.dhammakaya.booneu3.Dates.OneDayDecorator;
 import network.dhammakaya.booneu3.R;
 import network.dhammakaya.booneu3.View.CustomDateView;
 import network.dhammakaya.booneu3.View.CustomTextView;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends Activity implements View.OnClickListener{
+import static network.dhammakaya.booneu3.Data.EventData.BASE_URL;
+
+public class MainActivity extends Activity implements View.OnClickListener {
 
     private MaterialCalendarView mcv;
 
@@ -52,6 +67,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
     private CustomTextView tv_month_e;
     private CustomTextView tv_year_e;
     private CustomTextView tv_user_id;
+    private CustomTextView empty_view;
 
     //------ For Country -----//
     private LinearLayout btn_austria;
@@ -69,6 +85,11 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
     private LinearLayout btn_flag;
 
+    private DateFormat dayFormat;
+    private DateFormat monthFormat;
+    private DateFormat yearFormat;
+    private DateFormat dateFull;
+
     private BottomSheetDialog bottomSheetDialog;
 
     private RecyclerView rv_event;
@@ -78,7 +99,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
     private CustomTextView item_about;
     private CustomTextView item_line_login;
 
-    private String date,month,year;
+    private String date, month, year;
     private String country = "Defult";
 
     private CustomDateView cs;
@@ -86,6 +107,11 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
     //get Extra Value
     private String display_name;
+
+    private String getCountry;
+    private String getCalendar;
+
+    private ArrayList<EventData> eventData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,10 +121,9 @@ public class MainActivity extends Activity implements View.OnClickListener{
         initView();
         setBottomSheet();
         setCurrentDay();
-        initListener();
         customCalendar();
-        setRecyclerView();
-
+        //setRecyclerView();
+        initListener();
         //getExtraValue();
         //setTextFromExtra();
 
@@ -107,13 +132,24 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        feedData();
+    }
+
+    private void feedData() {
+        new FeedAsyn().execute(BASE_URL + "query_r1.php?country_en_name="+ getCountry +"&"+"calendar_date=" + getCalendar);
+    }
+
     private void getExtraValue() {
-        display_name = getIntent().getExtras().getString("display_name","null");
+        display_name = getIntent().getExtras().getString("display_name", "null");
     }
 
     public void getStringFromFile() {
         SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
         country = f_data.getString("country", "Austria");
+        getCountry = country;
     }
 
     private void setTextFromFile() {
@@ -122,11 +158,11 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
     @SuppressLint("ResourceAsColor")
     private void setTextFromExtra() {
-        if (!display_name.equals("null")){
+        if (!display_name.equals("null")) {
             tv_user_id.setText(display_name);
             tv_user_id.setTextColor(getResources().getColor(R.color.green_500));
             tv_user_id.setBackgroundColor(getResources().getColor(R.color.white));
-            tv_user_id.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
+            tv_user_id.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
         } else {
             tv_user_id.setText("Don't login");
         }
@@ -134,22 +170,42 @@ public class MainActivity extends Activity implements View.OnClickListener{
     }
 
     private void setFlagCountry() {
-        if(country.equals("Austria")){ im_country.setImageResource(R.drawable.austria);}
-        if(country.equals("Belgium")){ im_country.setImageResource(R.drawable.belgium);}
-        if(country.equals("Denmark")){ im_country.setImageResource(R.drawable.denmark);}
-        if(country.equals("France")){ im_country.setImageResource(R.drawable.france);}
-        if(country.equals("Germany")){ im_country.setImageResource(R.drawable.germany);}
-        if(country.equals("Italy")){ im_country.setImageResource(R.drawable.italy);}
-        if(country.equals("Malta")){ im_country.setImageResource(R.drawable.malta);}
-        if(country.equals("Netherlands")){ im_country.setImageResource(R.drawable.netherlands);}
-        if(country.equals("Norway")){ im_country.setImageResource(R.drawable.norway);}
-        if(country.equals("Sweden")){ im_country.setImageResource(R.drawable.sweden);}
-        if(country.equals("Switzerland")){ im_country.setImageResource(R.drawable.switzerland);}
-        if(country.equals("United Kingdom")){ im_country.setImageResource(R.drawable.united_kingdom);}
-    }
-
-    private void setRecyclerView() {
-        rv_event.setAdapter(new RecyclerViewAdapter(this));
+        if (country.equals("Austria")) {
+            im_country.setImageResource(R.drawable.austria);
+        }
+        if (country.equals("Belgium")) {
+            im_country.setImageResource(R.drawable.belgium);
+        }
+        if (country.equals("Denmark")) {
+            im_country.setImageResource(R.drawable.denmark);
+        }
+        if (country.equals("France")) {
+            im_country.setImageResource(R.drawable.france);
+        }
+        if (country.equals("Germany")) {
+            im_country.setImageResource(R.drawable.germany);
+        }
+        if (country.equals("Italy")) {
+            im_country.setImageResource(R.drawable.italy);
+        }
+        if (country.equals("Malta")) {
+            im_country.setImageResource(R.drawable.malta);
+        }
+        if (country.equals("Netherlands")) {
+            im_country.setImageResource(R.drawable.netherlands);
+        }
+        if (country.equals("Norway")) {
+            im_country.setImageResource(R.drawable.norway);
+        }
+        if (country.equals("Sweden")) {
+            im_country.setImageResource(R.drawable.sweden);
+        }
+        if (country.equals("Switzerland")) {
+            im_country.setImageResource(R.drawable.switzerland);
+        }
+        if (country.equals("United Kingdom")) {
+            im_country.setImageResource(R.drawable.united_kingdom);
+        }
     }
 
     private void setCurrentDay() {
@@ -157,12 +213,14 @@ public class MainActivity extends Activity implements View.OnClickListener{
         SimpleDateFormat dayFormat = new SimpleDateFormat("dd");
         SimpleDateFormat monthFormat = new SimpleDateFormat("MMMM");
         SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
+        SimpleDateFormat dateFull = new SimpleDateFormat("yyyy-MM-dd");
         tv_day.setText(dayFormat.format(c));
         tv_month.setText(monthFormat.format(c));
         tv_year.setText(yearFormat.format(c));
         tv_day_e.setText(dayFormat.format(c));
         tv_month_e.setText(monthFormat.format(c));
         tv_year_e.setText(yearFormat.format(c));
+        getCalendar = dateFull.format(c);
     }
 
     private void customCalendar() {
@@ -178,12 +236,15 @@ public class MainActivity extends Activity implements View.OnClickListener{
         mcv.setDateSelected(calendar.getTime(), true);
         mcv.addDecorator(new OneDayDecorator());
 
+        dayFormat = new SimpleDateFormat("dd");
+        monthFormat = new SimpleDateFormat("MMMM");
+        yearFormat = new SimpleDateFormat("yyyy");
+        dateFull = new SimpleDateFormat("yyyy-MM-dd");
+
+
         mcv.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-                DateFormat dayFormat = new SimpleDateFormat("dd");
-                DateFormat monthFormat = new SimpleDateFormat("MMMM");
-                DateFormat yearFormat = new SimpleDateFormat("yyyy");
                 Calendar c = date.getCalendar();
                 tv_day.setText(dayFormat.format(c.getTime()));
                 tv_month.setText(monthFormat.format(c.getTime()));
@@ -191,6 +252,9 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 tv_day_e.setText(dayFormat.format(c.getTime()));
                 tv_month_e.setText(monthFormat.format(c.getTime()));
                 tv_year_e.setText(yearFormat.format(c.getTime()));
+                getCalendar = dateFull.format(c.getTime());
+                Toast.makeText(getApplicationContext(),getCalendar,Toast.LENGTH_SHORT).show();
+                feedData();
             }
         });
 
@@ -212,8 +276,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
         View mCountry = getLayoutInflater().inflate(R.layout.dialog_select_country, null);
         mBuilder.setView(mCountry);
         AlertDialog dialog = mBuilder.create();
-        dialog.setCancelable(false);
-        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
         dialog.show();
         dialog.getWindow().setLayout(900, 1100);
 
@@ -262,6 +326,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
         tv_month_e = (CustomTextView) findViewById(R.id.tv_month_e);
         tv_year_e = (CustomTextView) findViewById(R.id.tv_year_e);
         tv_user_id = (CustomTextView) findViewById(R.id.tv_user_id);
+        empty_view = (CustomTextView) findViewById(R.id.empty_view);
 
         rv_event = (RecyclerView) findViewById(R.id.rv_event);
 
@@ -282,11 +347,11 @@ public class MainActivity extends Activity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
 
-        if (v == iv_setting){
+        if (v == iv_setting) {
             bottomSheetDialog.show();
         }
 
-        if (v == btn_flag){
+        if (v == btn_flag) {
             startDialogSettingCountry();
         }
 
@@ -307,7 +372,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
             System.exit(0);
         }
 
-        if(v == btn_austria){
+        if (v == btn_austria) {
             SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = f_data.edit();
             editor.putString("country", "Austria");
@@ -315,7 +380,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
             restartApplication();
         }
 
-        if(v == btn_belgium){
+        if (v == btn_belgium) {
             SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = f_data.edit();
             editor.putString("country", "Belgium");
@@ -323,7 +388,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
             restartApplication();
         }
 
-        if(v == btn_denmark){
+        if (v == btn_denmark) {
             SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = f_data.edit();
             editor.putString("country", "Denmark");
@@ -331,7 +396,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
             restartApplication();
         }
 
-        if(v == btn_france){
+        if (v == btn_france) {
             SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = f_data.edit();
             editor.putString("country", "France");
@@ -339,7 +404,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
             restartApplication();
         }
 
-        if(v == btn_germany){
+        if (v == btn_germany) {
             SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = f_data.edit();
             editor.putString("country", "Germany");
@@ -347,7 +412,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
             restartApplication();
         }
 
-        if(v == btn_italy){
+        if (v == btn_italy) {
             SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = f_data.edit();
             editor.putString("country", "Italy");
@@ -355,16 +420,15 @@ public class MainActivity extends Activity implements View.OnClickListener{
             restartApplication();
         }
 
-        if(v == btn_malta){
+        if (v == btn_malta) {
             SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = f_data.edit();
             editor.putString("country", "Malta");
             editor.commit();
-            finish();
             restartApplication();
         }
 
-        if(v == btn_netherlands){
+        if (v == btn_netherlands) {
             SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = f_data.edit();
             editor.putString("country", "Netherlands");
@@ -372,7 +436,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
             restartApplication();
         }
 
-        if(v == btn_norway){
+        if (v == btn_norway) {
             SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = f_data.edit();
             editor.putString("country", "Norway");
@@ -380,7 +444,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
             restartApplication();
         }
 
-        if(v == btn_sweden){
+        if (v == btn_sweden) {
             SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = f_data.edit();
             editor.putString("country", "Sweden");
@@ -388,7 +452,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
             restartApplication();
         }
 
-        if(v == btn_switzerland){
+        if (v == btn_switzerland) {
             SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = f_data.edit();
             editor.putString("country", "Switzerland");
@@ -396,7 +460,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
             restartApplication();
         }
 
-        if(v == btn_uk){
+        if (v == btn_uk) {
             SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = f_data.edit();
             editor.putString("country", "United Kingdom");
@@ -404,12 +468,62 @@ public class MainActivity extends Activity implements View.OnClickListener{
             restartApplication();
         }
 
+
     }
 
-    private void restartApplication(){
+    private void restartApplication() {
         finish();
         Intent i = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
+    }
+
+    private class FeedAsyn extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                OkHttpClient _OkHttpClient = new OkHttpClient();
+
+                Request _request = new Request.Builder().url(strings[0]).get().build();
+
+                okhttp3.Response _response = _OkHttpClient.newCall(_request).execute();
+
+                String _result = _response.body().string();
+
+                Gson _gson = new Gson();
+
+                Type type = new TypeToken<List<EventData>>() {}.getType();
+
+                eventData = _gson.fromJson(_result, type);
+
+                return "successfully";
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            Integer eventCount = eventData.size();
+
+            if (result != null){
+                if(eventCount.equals(0)){
+                    rv_event.setVisibility(View.GONE);
+                    empty_view.setVisibility(View.VISIBLE);
+                } else {
+                    rv_event.setVisibility(View.VISIBLE);
+                    empty_view.setVisibility(View.GONE);
+                    rv_event.setAdapter(new RecyclerViewAdapter(eventData,getApplicationContext()));
+                }
+            } else {
+                Toast.makeText(getApplicationContext(), "Feed Data Failure", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

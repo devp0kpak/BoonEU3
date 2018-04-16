@@ -58,17 +58,40 @@
                 android:textSize="16sp"
                 android:text="Wat Phra Dhammakaya Frankfurt"/>
 
-            <network.dhammakaya.booneu3.View.CustomTextView
-                android:id="@+id/tv_event_time"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:layout_gravity="center_vertical"
-                android:drawablePadding="5dp"
-                android:drawableStart="@drawable/ic_clock"
-                android:drawableTint="@color/grey_700"
-                android:textSize="16sp"
-                android:text="9.00 - 18.00"/>
+                android:orientation="horizontal">
+
+                <network.dhammakaya.booneu3.View.CustomTextView
+                    android:id="@+id/tv_event_time_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="5dp"
+                    android:drawableStart="@drawable/ic_clock"
+                    android:drawableTint="@color/grey_700"
+                    android:textSize="16sp"
+                    android:text="9.00"/>
+
+                <network.dhammakaya.booneu3.View.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="5dp"
+                    android:textSize="16sp"
+                    android:text=" - "/>
+
+                <network.dhammakaya.booneu3.View.CustomTextView
+                    android:id="@+id/tv_event_time_stop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="5dp"
+                    android:textSize="16sp"
+                    android:text="18.00"/>
+
+            </LinearLayout>
+
+
 
         </LinearLayout>
 

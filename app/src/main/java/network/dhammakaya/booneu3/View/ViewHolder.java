@@ -21,7 +21,8 @@ public class ViewHolder extends RecyclerView.ViewHolder {
     public CircleImageView iv_event_image;
     public CustomTextView tv_event_name;
     public CustomTextView tv_event_location;
-    public CustomTextView tv_event_time;
+    public CustomTextView tv_event_time_start;
+    public CustomTextView tv_event_time_stop;
 
     private Context context;
 
@@ -32,12 +33,14 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         iv_event_image = (CircleImageView) itemView.findViewById(R.id.iv_event_image);
         tv_event_name = (CustomTextView) itemView.findViewById(R.id.tv_event_name);
         tv_event_location = (CustomTextView) itemView.findViewById(R.id.tv_event_location);
-        tv_event_time = (CustomTextView) itemView.findViewById(R.id.tv_event_time);
+        tv_event_time_start = (CustomTextView) itemView.findViewById(R.id.tv_event_time_start);
+        tv_event_time_stop = (CustomTextView) itemView.findViewById(R.id.tv_event_time_stop);
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, DetailActivity.class);
+
 //                Toast.makeText(ViewHolder.this.context, "Hello", Toast.LENGTH_SHORT).show();
                 context.startActivity(intent);
             }

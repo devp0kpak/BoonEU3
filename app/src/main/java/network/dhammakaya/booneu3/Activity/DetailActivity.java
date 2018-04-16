@@ -89,8 +89,8 @@ import network.dhammakaya.booneu3.View.CustomTextView;
         }
 
         if (v == ll_center) {
-            Intent intentCenter = new Intent(getApplicationContext(), CenterActivity.class);
-            startActivity(intentCenter);
+            //Intent intentCenter = new Intent(getApplicationContext(), CenterActivity.class);
+            //startActivity(intentCenter);
         }
      }
  }

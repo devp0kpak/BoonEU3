@@ -13,6 +13,28 @@ import java.util.Date;
  */
 
 public class CustomDateView {
+    public static String setDate(String strDate)
+    {
+
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
+        int year=0,month=0,day=0;
+        try {
+            Date date = df.parse(strDate);
+            Calendar c = Calendar.getInstance();
+            c.setTime(date);
+
+            year = c.get(Calendar.YEAR);
+            month = c.get(Calendar.MONTH);
+            day = c.get(Calendar.DATE);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return String.format("%s-%s-%s", day,month,year);//Thai get +543
+    }
+
     public static String dateThai(String strDate)
     {
         String Months[] = { "January", "February", "March", "April",

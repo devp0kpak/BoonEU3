@@ -269,6 +269,7 @@
                 android:gravity="center"
                 android:visibility="gone"
                 android:textSize="24sp"
+                android:background="@color/grey_300"
                 android:text="No Event" />
 
         </LinearLayout>
