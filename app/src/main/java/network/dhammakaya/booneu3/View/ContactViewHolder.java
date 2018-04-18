@@ -13,9 +13,9 @@ public class ContactViewHolder extends RecyclerView.ViewHolder {
 
     private Context context;
 
-    private ImageView iv_contact_icon;
-    private CustomTextView tv_contact_data;
-    private CustomTextView tv_contact_position;
+    public ImageView iv_contact_icon;
+    public CustomTextView tv_contact_data;
+    public CustomTextView tv_contact_position;
 
     public ContactViewHolder(View itemView, final Context context) {
         super(itemView);

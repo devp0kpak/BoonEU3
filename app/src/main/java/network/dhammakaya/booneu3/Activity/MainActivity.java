@@ -34,10 +34,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 import network.dhammakaya.booneu3.Adapter.RecyclerViewAdapter;
 import network.dhammakaya.booneu3.Data.EventData;
+import network.dhammakaya.booneu3.Dates.EventDecorator;
 import network.dhammakaya.booneu3.Dates.OneDayDecorator;
 import network.dhammakaya.booneu3.R;
 import network.dhammakaya.booneu3.View.CustomDateView;
@@ -138,7 +140,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     private void feedData() {
-        new FeedAsyn().execute(BASE_URL + "query_r1.php?country_en_name="+ getCountry +"&"+"calendar_date=" + getCalendar);
+        new FeedAsyn().execute(BASE_URL + "query_r1.php?country_name_en="+ getCountry +"&"+"calendar_date=" + getCalendar);
     }
 
     private void getExtraValue() {
@@ -222,6 +224,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
         getCalendar = dateFull.format(c);
     }
 
+    private HashSet<CalendarDay> getCalendarDaysSet(Calendar cal1) {
+        HashSet<CalendarDay> setDays = new HashSet<>();
+        setDays.add(CalendarDay.from(cal1));
+        return setDays;
+    }
+
     private void customCalendar() {
 
         mcv.state().edit()
@@ -232,8 +240,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 .commit();
 
         Calendar calendar = Calendar.getInstance();
+        HashSet<CalendarDay> setDays = getCalendarDaysSet(calendar);
+        int myColor = R.color.color_point_span;
         mcv.setDateSelected(calendar.getTime(), true);
         mcv.addDecorator(new OneDayDecorator());
+        mcv.addDecorator(new EventDecorator(myColor,setDays,getApplicationContext()));
 
         dayFormat = new SimpleDateFormat("dd");
         monthFormat = new SimpleDateFormat("MMMM");
@@ -328,7 +339,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         empty_view = (CustomTextView) findViewById(R.id.empty_view);
 
         rv_event = (RecyclerView) findViewById(R.id.rv_event);
-
 
     }
 

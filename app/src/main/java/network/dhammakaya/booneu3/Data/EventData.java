@@ -6,6 +6,9 @@ import android.os.Parcelable;
 public class EventData implements Parcelable {
 
     private String event_name;
+    private String country_id;
+    private String center_id;
+    private String country_name_en;
     private String center_name_en;
     private String calendar_date;
     private String time_start;
@@ -16,6 +19,18 @@ public class EventData implements Parcelable {
 
     public String getEvent_name() {
         return event_name;
+    }
+
+    public String getCountry_id() {
+        return country_id;
+    }
+
+    public String getCenter_id() {
+        return center_id;
+    }
+
+    public String getCountry_name_en() {
+        return country_name_en;
     }
 
     public String getCenter_name_en() { return center_name_en; }
@@ -42,6 +57,9 @@ public class EventData implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(this.event_name);
+        parcel.writeString(this.country_id);
+        parcel.writeString(this.center_id);
+        parcel.writeString(this.country_name_en);
         parcel.writeString(this.center_name_en);
         parcel.writeString(this.calendar_date);
         parcel.writeString(this.time_start);
@@ -54,6 +72,9 @@ public class EventData implements Parcelable {
 
     protected EventData(Parcel in) {
         this.event_name = in.readString();
+        this.country_id = in.readString();
+        this.center_id = in.readString();
+        this.country_name_en = in.readString();
         this.center_name_en = in.readString();
         this.calendar_date = in.readString();
         this.time_start = in.readString();

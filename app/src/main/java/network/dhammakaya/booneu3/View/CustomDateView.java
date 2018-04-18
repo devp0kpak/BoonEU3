@@ -40,7 +40,7 @@ public class CustomDateView {
     public static String setDay(String strDay)
     {
 
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat df = new SimpleDateFormat("dd");
 
         int day=0;
         try {
@@ -59,7 +59,7 @@ public class CustomDateView {
     public static String setMonth(String strMonth)
     {
 
-        DateFormat df = new SimpleDateFormat("yyyy-MMMMM-dd");
+        DateFormat df = new SimpleDateFormat("MMMM");
 
         int month=0;
         try {
@@ -79,7 +79,7 @@ public class CustomDateView {
     public static String setYear(String strYear)
     {
 
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat df = new SimpleDateFormat("yyyy");
 
         int year=0;
         try {
