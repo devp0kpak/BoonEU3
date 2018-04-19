@@ -15,7 +15,7 @@
             style="@style/ButtonBack"/>
 
         <network.dhammakaya.booneu3.View.CustomTextView
-            android:id="@+id/tv_day"
+            android:id="@+id/tv_day_d"
             android:layout_width="0dp"
             android:layout_weight="13"
             android:layout_height="match_parent"
@@ -83,15 +83,32 @@
         android:padding="10dp"
         android:orientation="vertical">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_image"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layoutManager="LinearLayoutManager"
-            android:orientation="horizontal"
-            tools:listitem="@layout/view_item_picture">
+            android:orientation="vertical">
 
-        </android.support.v7.widget.RecyclerView>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="LinearLayoutManager"
+                android:orientation="horizontal"
+                tools:listitem="@layout/view_item_picture"/>
+
+            <network.dhammakaya.booneu3.View.CustomTextView
+                android:id="@+id/empty_view_image"
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:gravity="center"
+                android:visibility="gone"
+                android:textSize="24sp"
+                android:background="@color/grey_300"
+                android:text="No image" />
+
+
+        </LinearLayout>
+
 
         <network.dhammakaya.booneu3.View.CustomTextView
             android:id="@+id/tv_event_name"

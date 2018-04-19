@@ -246,7 +246,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         mcv.addDecorator(new OneDayDecorator());
         mcv.addDecorator(new EventDecorator(myColor,setDays,getApplicationContext()));
 
-        dayFormat = new SimpleDateFormat("dd");
+        dayFormat = new SimpleDateFormat("d");
         monthFormat = new SimpleDateFormat("MMMM");
         yearFormat = new SimpleDateFormat("yyyy");
         dateFull = new SimpleDateFormat("yyyy-MM-dd");

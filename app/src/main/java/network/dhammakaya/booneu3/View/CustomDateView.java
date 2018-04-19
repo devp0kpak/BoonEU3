@@ -40,7 +40,7 @@ public class CustomDateView {
     public static String setDay(String strDay)
     {
 
-        DateFormat df = new SimpleDateFormat("dd");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
         int day=0;
         try {

@@ -24,10 +24,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import network.dhammakaya.booneu3.Adapter.ContactAdapter;
+import network.dhammakaya.booneu3.Adapter.ImageEventAdapter;
 import network.dhammakaya.booneu3.Adapter.PhotoAdapter;
 import network.dhammakaya.booneu3.Adapter.RecyclerViewAdapter;
 import network.dhammakaya.booneu3.Data.ContactData;
 import network.dhammakaya.booneu3.Data.EventData;
+import network.dhammakaya.booneu3.Data.ImageEventData;
 import network.dhammakaya.booneu3.R;
 import network.dhammakaya.booneu3.View.CustomDateView;
 import network.dhammakaya.booneu3.View.CustomTextView;
@@ -50,6 +52,7 @@ import static network.dhammakaya.booneu3.Data.EventData.BASE_URL;
      private CustomTextView tv_center_name;
      private CustomTextView tv_time;
      private CustomTextView empty_view;
+     private CustomTextView empty_view_image;
 
      private LinearLayout ll_center;
 
@@ -63,21 +66,22 @@ import static network.dhammakaya.booneu3.Data.EventData.BASE_URL;
      private String time_stop;
      private String country_id;
      private String center_id;
+     private String event_id;
 
      private ArrayList<ContactData> contactData;
+     private ArrayList<ImageEventData> imageEventData;
 
      @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-
         getExtraString();
         initView();
         initListener();
         setRecyclerViewImage();
         setRecyclerViewContact();
         setTextInterface();
-
+        feedData();
     }
 
     private void getExtraString() {
@@ -88,13 +92,14 @@ import static network.dhammakaya.booneu3.Data.EventData.BASE_URL;
          iv_btn_back = (ImageView) findViewById(R.id.iv_btn_back);
 
          btn_favorite = (CustomTextView) findViewById(R.id.btn_favorite);
-         tv_day = (CustomTextView) findViewById(R.id.tv_day);
+         tv_day = (CustomTextView) findViewById(R.id.tv_day_d);
          tv_month = (CustomTextView) findViewById(R.id.tv_month);
          tv_year = (CustomTextView) findViewById(R.id.tv_year);
          tv_event_name = (CustomTextView) findViewById(R.id.tv_event_name);
          tv_center_name = (CustomTextView) findViewById(R.id.tv_center_name);
          tv_time = (CustomTextView) findViewById(R.id.tv_time);
          empty_view = (CustomTextView) findViewById(R.id.empty_view);
+         empty_view_image = (CustomTextView) findViewById(R.id.empty_view_image);
 
          ll_center = (LinearLayout) findViewById(R.id.ll_center);
 
@@ -110,23 +115,23 @@ import static network.dhammakaya.booneu3.Data.EventData.BASE_URL;
 
      private void feedData() {
          new FeedAsyn().execute(BASE_URL + "query_r3.php?country_id="+ country_id +"&"+"center_id=" + center_id);
+         new FeedImage().execute(BASE_URL + "query_r4.php?country_id="+ country_id +"&center_id=" + center_id + "&event_id=" + event_id);
      }
 
      private void setRecyclerViewImage() {
          rv_image.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
          rv_image.setHasFixedSize(true);
-         rv_image.setAdapter(new PhotoAdapter(getApplicationContext()));
      }
 
      private void setRecyclerViewContact() {
          rv_contact.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
          rv_contact.setHasFixedSize(true);
-         //rv_contact.setAdapter(new ContactAdapter(contactData,getApplicationContext()));
      }
 
      private void setTextInterface() {
          country_id = eventData.getCountry_id();
          center_id = eventData.getCenter_id();
+         event_id = eventData.getEvent_id();
          day = CustomDateView.setDay(eventData.getCalendar_date());
          month = CustomDateView.monthThai(eventData.getCalendar_date());
          year = CustomDateView.setYear(eventData.getCalendar_date());
@@ -157,12 +162,6 @@ import static network.dhammakaya.booneu3.Data.EventData.BASE_URL;
             //Intent intentCenter = new Intent(getApplicationContext(), CenterActivity.class);
             //startActivity(intentCenter);
         }
-     }
-
-     @Override
-     public void onResume() {
-         super.onResume();
-         feedData();
      }
 
      private void startDialogConfirmFavorite() {
@@ -224,4 +223,56 @@ import static network.dhammakaya.booneu3.Data.EventData.BASE_URL;
              }
          }
      }
+
+     private class FeedImage extends AsyncTask<String, Void, String> {
+
+         @Override
+         protected String doInBackground(String... strings) {
+             try {
+                 OkHttpClient _OkHttpClient = new OkHttpClient();
+
+                 Request _request = new Request.Builder().url(strings[0]).get().build();
+
+                 okhttp3.Response _response = _OkHttpClient.newCall(_request).execute();
+
+                 String _result = _response.body().string();
+
+                 Gson _gson = new Gson();
+
+                 Type type = new TypeToken<List<ImageEventData>>() {}.getType();
+
+                 imageEventData = _gson.fromJson(_result, type);
+
+                 return "successfully";
+
+             } catch (IOException e) {
+                 e.printStackTrace();
+             }
+
+             return null;
+         }
+
+         @Override
+         protected void onPostExecute(String result) {
+             super.onPostExecute(result);
+
+             Integer imageEventCount = imageEventData.size();
+             Toast.makeText(getApplicationContext(), "country_id : " + country_id + "\n center_id : " + center_id + "\n event_id : " + event_id, Toast.LENGTH_SHORT).show();
+
+             if (result != null){
+                 if(imageEventCount.equals(0)){
+                     rv_image.setVisibility(View.GONE);
+                     empty_view_image.setVisibility(View.VISIBLE);
+                 } else {
+                     rv_image.setVisibility(View.VISIBLE);
+                     empty_view_image.setVisibility(View.GONE);
+                     rv_image.setAdapter(new ImageEventAdapter(imageEventData,getApplicationContext()));
+                 }
+             } else {
+                 Toast.makeText(getApplicationContext(), "Feed Data Failure", Toast.LENGTH_SHORT).show();
+             }
+         }
+     }
+
+
  }
