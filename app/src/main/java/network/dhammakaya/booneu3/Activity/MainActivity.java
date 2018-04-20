@@ -26,6 +26,10 @@ import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.text.DateFormat;
@@ -37,15 +41,19 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
+import network.dhammakaya.booneu3.Adapter.ImageEventAdapter;
 import network.dhammakaya.booneu3.Adapter.RecyclerViewAdapter;
+import network.dhammakaya.booneu3.Data.DotData;
 import network.dhammakaya.booneu3.Data.EventData;
 import network.dhammakaya.booneu3.Dates.EventDecorator;
 import network.dhammakaya.booneu3.Dates.OneDayDecorator;
 import network.dhammakaya.booneu3.R;
 import network.dhammakaya.booneu3.View.CustomDateView;
 import network.dhammakaya.booneu3.View.CustomTextView;
+import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -111,8 +119,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private String getCountry;
     private String getCalendar;
+    private String dotList;
 
     private ArrayList<EventData> eventData;
+    private List<DotData> dotData;
+    private EventData eventData_data;
+
+    private AlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,11 +140,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
         initListener();
         //getExtraValue();
         //setTextFromExtra();
-
         setTextFromFile();
         setFlagCountry();
-
+        callDot();
     }
+
+
 
     @Override
     public void onResume() {
@@ -141,6 +155,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private void feedData() {
         new FeedAsyn().execute(BASE_URL + "query_r1.php?country_name_en="+ getCountry +"&"+"calendar_date=" + getCalendar);
+    }
+
+    private void callDot() {
+        new DotAsyn().execute(BASE_URL + "query_dot.php?country_name="+ getCountry);
     }
 
     private void getExtraValue() {
@@ -240,11 +258,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 .commit();
 
         Calendar calendar = Calendar.getInstance();
-        HashSet<CalendarDay> setDays = getCalendarDaysSet(calendar);
-        int myColor = R.color.color_point_span;
+
+
         mcv.setDateSelected(calendar.getTime(), true);
         mcv.addDecorator(new OneDayDecorator());
-        mcv.addDecorator(new EventDecorator(myColor,setDays,getApplicationContext()));
 
         dayFormat = new SimpleDateFormat("d");
         monthFormat = new SimpleDateFormat("MMMM");
@@ -285,7 +302,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
         View mCountry = getLayoutInflater().inflate(R.layout.dialog_select_country, null);
         mBuilder.setView(mCountry);
-        AlertDialog dialog = mBuilder.create();
+        dialog = mBuilder.create();
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);
         dialog.show();
@@ -340,6 +357,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         rv_event = (RecyclerView) findViewById(R.id.rv_event);
 
+        dotData = new ArrayList<>();
     }
 
     private void initListener() {
@@ -382,6 +400,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
 
         if (v == btn_austria) {
+            dialog.dismiss();
             SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = f_data.edit();
             editor.putString("country", "Austria");
@@ -390,6 +409,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
 
         if (v == btn_belgium) {
+            dialog.dismiss();
             SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = f_data.edit();
             editor.putString("country", "Belgium");
@@ -398,6 +418,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
 
         if (v == btn_denmark) {
+            dialog.dismiss();
             SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = f_data.edit();
             editor.putString("country", "Denmark");
@@ -406,6 +427,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
 
         if (v == btn_france) {
+            dialog.dismiss();
             SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = f_data.edit();
             editor.putString("country", "France");
@@ -414,6 +436,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
 
         if (v == btn_germany) {
+            dialog.dismiss();
             SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = f_data.edit();
             editor.putString("country", "Germany");
@@ -422,6 +445,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
 
         if (v == btn_italy) {
+            dialog.dismiss();
             SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = f_data.edit();
             editor.putString("country", "Italy");
@@ -430,6 +454,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
 
         if (v == btn_malta) {
+            dialog.dismiss();
             SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = f_data.edit();
             editor.putString("country", "Malta");
@@ -438,6 +463,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
 
         if (v == btn_netherlands) {
+            dialog.dismiss();
             SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = f_data.edit();
             editor.putString("country", "Netherlands");
@@ -446,6 +472,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
 
         if (v == btn_norway) {
+            dialog.dismiss();
             SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = f_data.edit();
             editor.putString("country", "Norway");
@@ -454,6 +481,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
 
         if (v == btn_sweden) {
+            dialog.dismiss();
             SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = f_data.edit();
             editor.putString("country", "Sweden");
@@ -462,6 +490,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
 
         if (v == btn_switzerland) {
+            dialog.dismiss();
             SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = f_data.edit();
             editor.putString("country", "Switzerland");
@@ -470,6 +499,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
 
         if (v == btn_uk) {
+            dialog.dismiss();
             SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = f_data.edit();
             editor.putString("country", "United Kingdom");
@@ -533,6 +563,65 @@ public class MainActivity extends Activity implements View.OnClickListener {
             } else {
                 Toast.makeText(getApplicationContext(), "Feed Data Failure", Toast.LENGTH_SHORT).show();
             }
+        }
+    }
+
+    public class DotAsyn extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+
+                OkHttpClient _OkHttpClient = new OkHttpClient();
+
+                Request _request = new Request.Builder().url(strings[0]).get().build();
+
+                okhttp3.Response _response = _OkHttpClient.newCall(_request).execute();
+
+                JSONArray array = new JSONArray(_response.body().string());
+
+                for (int i=0; i<array.length();i++) {
+
+                    JSONObject object = array.getJSONObject(i);
+
+                    DotData data = new DotData(
+                            object.getString("r1_id"),
+                            object.getString("country_name_en"),
+                            object.getString("calendar_date")
+                    );
+
+                    dotData.add(data);
+
+                    dotList = object.getString("calendar_date");
+                    int Y = Integer.parseInt(CustomDateView.setY(dotList));
+                    int M = Integer.parseInt(CustomDateView.setM(dotList));
+                    int D = Integer.parseInt(CustomDateView.setD(dotList));
+
+                    Calendar cal1 = Calendar.getInstance();
+                    cal1.set(Y,M,D);
+
+                    HashSet<CalendarDay> setDays = getCalendarDaysSet(cal1);
+
+                    int myColor = R.color.color_point_span;
+
+                    mcv.addDecorator(new EventDecorator(myColor,setDays,getApplicationContext()));
+
+                }
+
+                return "successfully";
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
         }
     }
 }

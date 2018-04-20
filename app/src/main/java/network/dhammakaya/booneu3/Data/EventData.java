@@ -2,6 +2,12 @@ package network.dhammakaya.booneu3.Data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.Nullable;
+
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.CalendarUtils;
+
+import java.util.Calendar;
 
 public class EventData implements Parcelable {
 
@@ -73,7 +79,17 @@ public class EventData implements Parcelable {
         parcel.writeString(this.image_url);
     }
 
-    public EventData() {
+    public EventData(String event_name, String country_id, String center_id, String event_id, String country_name_en, String center_name_en, String calendar_date, String time_start, String time_stop, String image_url) {
+        this.event_name = event_name;
+        this.country_id = country_id;
+        this.center_id = center_id;
+        this.event_id = event_id;
+        this.country_name_en = country_name_en;
+        this.center_name_en = center_name_en;
+        this.calendar_date = calendar_date;
+        this.time_start = time_start;
+        this.time_stop = time_stop;
+        this.image_url = image_url;
     }
 
     protected EventData(Parcel in) {
