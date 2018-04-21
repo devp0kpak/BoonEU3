@@ -170,7 +170,7 @@ import static network.dhammakaya.booneu3.Data.EventData.BASE_URL;
          mBuilder.setView(mView);
          AlertDialog dialog = mBuilder.create();
          dialog.setCancelable(true);
-         dialog.setCanceledOnTouchOutside(false);
+         dialog.setCanceledOnTouchOutside(true);
          dialog.show();
          dialog.getWindow().setLayout(600, 500);
      }

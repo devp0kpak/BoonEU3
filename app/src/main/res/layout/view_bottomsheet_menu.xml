@@ -7,6 +7,20 @@
     android:orientation="vertical">
 
     <network.dhammakaya.booneu3.View.CustomTextView
+        android:id="@+id/item_line_logout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:drawablePadding="@dimen/activity_horizontal_margin"
+        android:drawableStart="@drawable/ic_line"
+        android:drawableTint="@color/color_icon_line"
+        android:textColor="@color/color_line_logout"
+        android:textSize="@dimen/text_size_bottom_sheet"
+        android:gravity="center_vertical"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:text="ล็อกเอาท์" />
+
+    <network.dhammakaya.booneu3.View.CustomTextView
         android:id="@+id/item_line_login"
         android:layout_width="match_parent"
         android:layout_height="60dp"

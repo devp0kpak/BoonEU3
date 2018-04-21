@@ -21,6 +21,10 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.linecorp.linesdk.api.LineApiClient;
+import com.linecorp.linesdk.api.LineApiClientBuilder;
+import com.linecorp.linesdk.auth.LineLoginApi;
+import com.linecorp.linesdk.auth.LineLoginResult;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
@@ -47,6 +51,7 @@ import network.dhammakaya.booneu3.Data.DotData;
 import network.dhammakaya.booneu3.Data.EventData;
 import network.dhammakaya.booneu3.Dates.EventDecorator;
 import network.dhammakaya.booneu3.Dates.OneDayDecorator;
+import network.dhammakaya.booneu3.Line.Constants;
 import network.dhammakaya.booneu3.R;
 import network.dhammakaya.booneu3.View.CustomDateView;
 import network.dhammakaya.booneu3.View.CustomTextView;
@@ -108,14 +113,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private CustomTextView item_exit;
     private CustomTextView item_about;
     private CustomTextView item_line_login;
-
-    private String country = "Defult";
+    private CustomTextView item_line_logout;
 
     private CustomDateView cs;
     private Object stringFromFile;
 
     //get Extra Value
+    private String country = "Defult";
     private String display_name;
+    private String user_id;
 
     private String getCountry;
     private String getCalendar;
@@ -124,6 +130,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private ArrayList<EventData> eventData;
     private List<DotData> dotData;
     private EventData eventData_data;
+    private static LineApiClient lineApiClient;
+    private static final int REQUEST_CODE = 1;
 
     private AlertDialog dialog;
 
@@ -132,14 +140,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getStringFromFile();
+        //getExtraValue();
         initView();
         setBottomSheet();
         setCurrentDay();
         customCalendar();
         //setRecyclerView();
         initListener();
-        //getExtraValue();
-        //setTextFromExtra();
+        setTextFromExtra();
         setTextFromFile();
         setFlagCountry();
         callDot();
@@ -162,12 +170,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     private void getExtraValue() {
-        display_name = getIntent().getExtras().getString("display_name", "null");
+        user_id = getIntent().getExtras().getString("user_id", "null");
     }
 
     public void getStringFromFile() {
         SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
         country = f_data.getString("country", "Austria");
+        user_id = f_data.getString("user_id","null");
+        display_name = f_data.getString("display_name","null");
         getCountry = country;
     }
 
@@ -182,8 +192,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             tv_user_id.setTextColor(getResources().getColor(R.color.green_500));
             tv_user_id.setBackgroundColor(getResources().getColor(R.color.white));
             tv_user_id.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+            Toast.makeText(this,"user_id : "+user_id,Toast.LENGTH_SHORT).show();
+            iv_btn_favorite.setVisibility(View.VISIBLE);
         } else {
-            tv_user_id.setText("Don't login");
+            tv_user_id.setText("Not logged in");
         }
 
     }
@@ -296,6 +308,27 @@ public class MainActivity extends Activity implements View.OnClickListener {
         item_exit = (CustomTextView) bottomSheetView.findViewById(R.id.item_exit);
         item_about = (CustomTextView) bottomSheetView.findViewById(R.id.item_about);
         item_line_login = (CustomTextView) bottomSheetView.findViewById(R.id.item_line_login);
+        item_line_logout = (CustomTextView) bottomSheetView.findViewById(R.id.item_line_logout);
+
+        if (!display_name.equals("null")) {
+            item_line_login.setVisibility(View.GONE);
+            item_line_logout.setVisibility(View.VISIBLE);
+        } else {
+            item_line_logout.setVisibility(View.GONE);
+            item_line_login.setVisibility(View.VISIBLE);
+        }
+
+        item_line_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = f_data.edit();
+                    editor.putString("user_id", "null");
+                    editor.putString("display_name", "null");
+                    editor.commit();
+                    restartApplication();
+            }
+        });
     }
 
     private void startDialogSettingCountry() {
@@ -358,6 +391,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         rv_event = (RecyclerView) findViewById(R.id.rv_event);
 
         dotData = new ArrayList<>();
+
+
     }
 
     private void initListener() {
@@ -391,6 +426,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
             bottomSheetDialog.dismiss();
             Intent AboutIntent = new Intent(this, AboutActivity.class);
             startActivity(AboutIntent);
+        }
+
+        if (v == item_line_login) {
+            try {
+                // App to App Login
+                Intent LoginIntent = LineLoginApi.getLoginIntent(v.getContext(), Constants.CHANNEL_ID);
+                startActivityForResult(LoginIntent, REQUEST_CODE);
+            } catch (Exception e) {
+                Log.e("ERROR", e.toString());
+            }
         }
 
         if (v == item_exit) {
@@ -622,6 +667,37 @@ public class MainActivity extends Activity implements View.OnClickListener {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
+        }
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode != REQUEST_CODE) {
+            Log.e("ERROR", "Unsupported Request");
+            return;
+        }
+
+        LineLoginResult result = LineLoginApi.getLoginResultFromIntent(data);
+
+        switch (result.getResponseCode()) {
+
+            case SUCCESS:
+                bottomSheetDialog.dismiss();
+                SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = f_data.edit();
+                editor.putString("user_id", result.getLineProfile().getUserId());
+                editor.putString("display_name", result.getLineProfile().getDisplayName());
+                editor.commit();
+                recreate();
+                break;
+
+            case CANCEL:
+                Log.e("ERROR", "LINE Login Canceled by user!!");
+                break;
+
+            default:
+                Log.e("ERROR", "Login FAILED!");
+                Log.e("ERROR", result.getErrorData().toString());
         }
     }
 }
