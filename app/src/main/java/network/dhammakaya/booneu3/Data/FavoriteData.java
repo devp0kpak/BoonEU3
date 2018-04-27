@@ -2,14 +2,8 @@ package network.dhammakaya.booneu3.Data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.Nullable;
 
-import com.prolificinteractive.materialcalendarview.CalendarDay;
-import com.prolificinteractive.materialcalendarview.CalendarUtils;
-
-import java.util.Calendar;
-
-public class EventData implements Parcelable {
+public class FavoriteData implements Parcelable {
 
     private String r1_id;
     private String event_name;
@@ -22,8 +16,6 @@ public class EventData implements Parcelable {
     private String time_start;
     private String time_stop;
     private String media_url;
-
-    public static final String BASE_URL = "http://booncalendar.dhammakaya.network/connect/";
 
     public String getR1_id() {
         return r1_id;
@@ -87,7 +79,7 @@ public class EventData implements Parcelable {
         parcel.writeString(this.media_url);
     }
 
-    public EventData(String r1_id, String event_name, String country_id, String center_id, String event_id, String country_name_en, String center_name_en, String calendar_date, String time_start, String time_stop, String media_url) {
+    public FavoriteData(String r1_id, String event_name, String country_id, String center_id, String event_id, String country_name_en, String center_name_en, String calendar_date, String time_start, String time_stop, String media_url) {
         this.r1_id = r1_id;
         this.event_name = event_name;
         this.country_id = country_id;
@@ -101,7 +93,7 @@ public class EventData implements Parcelable {
         this.media_url = media_url;
     }
 
-    protected EventData(Parcel in) {
+    protected FavoriteData(Parcel in) {
         this.r1_id = in.readString();
         this.event_name = in.readString();
         this.event_id = in.readString();
@@ -115,15 +107,15 @@ public class EventData implements Parcelable {
         this.media_url = in.readString();
     }
 
-    public static final Parcelable.Creator<EventData> CREATOR = new Parcelable.Creator<EventData>() {
+    public static final Parcelable.Creator<FavoriteData> CREATOR = new Parcelable.Creator<FavoriteData>() {
         @Override
-        public EventData createFromParcel(Parcel source) {
-            return new EventData(source);
+        public FavoriteData createFromParcel(Parcel source) {
+            return new FavoriteData(source);
         }
 
         @Override
-        public EventData[] newArray(int size) {
-            return new EventData[size];
+        public FavoriteData[] newArray(int size) {
+            return new FavoriteData[size];
         }
     };
 }

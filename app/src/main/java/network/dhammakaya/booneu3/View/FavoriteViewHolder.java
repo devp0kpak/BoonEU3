@@ -1,23 +1,21 @@
 package network.dhammakaya.booneu3.View;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.Toast;
+import android.widget.ImageView;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import network.dhammakaya.booneu3.Activity.DetailActivity;
+import network.dhammakaya.booneu3.Activity.ViewImageActivity;
 import network.dhammakaya.booneu3.Data.EventData;
+import network.dhammakaya.booneu3.Data.FavoriteData;
+import network.dhammakaya.booneu3.Data.ImageEventData;
 import network.dhammakaya.booneu3.R;
 
-/**
- * Created by Delux on 3/20/2018.
- */
-
-public class ViewHolder extends RecyclerView.ViewHolder {
+public class FavoriteViewHolder extends RecyclerView.ViewHolder{
 
     //view of item
     public CircleImageView iv_event_image;
@@ -31,7 +29,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
 
     private Context context;
 
-    public ViewHolder(final Context context, View itemView) {
+    public FavoriteViewHolder(final Context context, View itemView) {
         super(itemView);
         this.context = context;
 
@@ -47,7 +45,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, DetailActivity.class);
-                intent.putExtra("event_data", (EventData) btn_event.getTag(R.id.btn_event));
+                intent.putExtra("event_data", (FavoriteData) btn_event.getTag(R.id.btn_event));
 //                Toast.makeText(ViewHolder.this.context, "Hello", Toast.LENGTH_SHORT).show();
                 context.startActivity(intent);
             }

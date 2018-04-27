@@ -12,7 +12,7 @@ public class ImageEventData implements Parcelable {
     private String center_name_en;
     private String event_id;
     private String event_name;
-    private String image_url;
+    private String media_url;
 
     public static final String BASE_URL = "http://booncalendar.dhammakaya.network/connect/";
 
@@ -44,8 +44,8 @@ public class ImageEventData implements Parcelable {
         return event_name;
     }
 
-    public String getImage_url() {
-        return image_url;
+    public String getMedia_url() {
+        return media_url;
     }
 
     @Override
@@ -62,7 +62,7 @@ public class ImageEventData implements Parcelable {
         parcel.writeString(this.center_name_en);
         parcel.writeString(this.event_id);
         parcel.writeString(this.event_name);
-        parcel.writeString(this.image_url);
+        parcel.writeString(this.media_url);
     }
 
     public ImageEventData() {
@@ -76,7 +76,7 @@ public class ImageEventData implements Parcelable {
         this.center_name_en = in.readString();
         this.event_id = in.readString();
         this.event_name = in.readString();
-        this.image_url = in.readString();
+        this.media_url = in.readString();
     }
 
     public static final Parcelable.Creator<ImageEventData> CREATOR = new Parcelable.Creator<ImageEventData>() {

@@ -54,5 +54,7 @@ dependencies {
 
     //Line API
 
+    //Like button
+    implementation 'com.github.jd-alexander:LikeButton:0.2.3'
 
 }

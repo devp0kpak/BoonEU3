@@ -25,11 +25,23 @@
 
     </LinearLayout>
 
-    <network.dhammakaya.booneu3.View.CustomTextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_event"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:textSize="21sp"
-        android:text="Coming soon..."/>
+        android:layout_height="0dp"
+        android:layout_weight="88"
+        app:layoutManager="LinearLayoutManager"
+        android:visibility="visible"
+        tools:listitem="@layout/view_item_event"/>
 
+    <network.dhammakaya.booneu3.View.CustomTextView
+        android:id="@+id/empty_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="88"
+        android:gravity="center"
+        android:visibility="gone"
+        android:textSize="24sp"
+        android:background="@color/grey_300"
+        android:text="No Event" />
 </LinearLayout>

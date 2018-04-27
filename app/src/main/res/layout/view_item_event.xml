@@ -99,6 +99,7 @@
     </LinearLayout>
 
     <network.dhammakaya.booneu3.View.CustomTextView
+        android:id="@+id/tv_status_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="15sp"

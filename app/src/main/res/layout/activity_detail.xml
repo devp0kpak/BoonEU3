@@ -54,10 +54,26 @@
             android:layout_weight="40"
             android:layout_height="match_parent"
             android:paddingRight="15dp"
+            android:orientation="vertical"
             android:gravity="center|right">
+
+            <com.like.LikeButton
+                android:id="@+id/btn_like"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:gravity="center|left"
+                android:background="@drawable/bg_btn_favorite_detail"
+                android:visibility="gone"
+                app:icon_type="heart"
+                app:circle_start_color="@color/colorPrimary"
+                app:icon_size="20dp"
+                app:liked="false"
+                app:anim_scale_factor="2"
+                app:is_enabled="false" />
 
             <network.dhammakaya.booneu3.View.CustomTextView
                 android:id="@+id/btn_favorite"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
@@ -71,7 +87,25 @@
                 android:drawableTint="@color/red"
                 android:textColor="@color/red"
                 android:background="@drawable/bg_btn_favorite_detail"
-                android:text="รายการโปรด" />
+                android:text="ชื่นชอบ" />
+
+            <network.dhammakaya.booneu3.View.CustomTextView
+                android:id="@+id/btn_favorite_hide"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:gravity="center|left"
+                android:textSize="20sp"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/ic_disable"
+                android:drawableTint="@color/white"
+                android:textColor="@color/white"
+                android:background="@drawable/bg_btn_hide_favorite"
+                android:text="เลิกชื่นชอบ" />
 
         </LinearLayout>
 

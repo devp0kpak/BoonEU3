@@ -26,7 +26,7 @@ public class ViewImageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_image);
 
         imageEventData = getIntent().getParcelableExtra("imageUrl");
-        imageUrl = imageEventData.getImage_url();
+        imageUrl = imageEventData.getMedia_url();
         btnBack = (ImageView) findViewById(R.id.btnBack);
 
         btnBack.setOnClickListener(new View.OnClickListener() {

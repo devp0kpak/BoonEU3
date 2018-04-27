@@ -49,10 +49,12 @@ import network.dhammakaya.booneu3.Adapter.ImageEventAdapter;
 import network.dhammakaya.booneu3.Adapter.RecyclerViewAdapter;
 import network.dhammakaya.booneu3.Data.DotData;
 import network.dhammakaya.booneu3.Data.EventData;
+import network.dhammakaya.booneu3.Data.UserData;
 import network.dhammakaya.booneu3.Dates.EventDecorator;
 import network.dhammakaya.booneu3.Dates.OneDayDecorator;
 import network.dhammakaya.booneu3.Line.Constants;
 import network.dhammakaya.booneu3.R;
+import network.dhammakaya.booneu3.UrlInterface;
 import network.dhammakaya.booneu3.View.CustomDateView;
 import network.dhammakaya.booneu3.View.CustomTextView;
 import okhttp3.FormBody;
@@ -122,10 +124,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private String country = "Defult";
     private String display_name;
     private String user_id;
-
     private String getCountry;
     private String getCalendar;
     private String dotList;
+    private String user_id_data;
 
     private ArrayList<EventData> eventData;
     private List<DotData> dotData;
@@ -153,8 +155,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         callDot();
     }
 
-
-
     @Override
     public void onResume() {
         super.onResume();
@@ -162,7 +162,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     private void feedData() {
-        new FeedAsyn().execute(BASE_URL + "query_r1.php?country_name_en="+ getCountry +"&"+"calendar_date=" + getCalendar);
+        new FeedAsyn().execute(BASE_URL + "query_r1.php?country_name="+ getCountry +"&"+"calendar_date=" + getCalendar);
     }
 
     private void callDot() {
@@ -321,12 +321,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
         item_line_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = f_data.edit();
-                    editor.putString("user_id", "null");
-                    editor.putString("display_name", "null");
-                    editor.commit();
-                    restartApplication();
+                bottomSheetDialog.dismiss();
+                SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = f_data.edit();
+                editor.putString("user_id", "null");
+                editor.putString("display_name", "null");
+                editor.putString("user_code", "null");
+                editor.commit();
+                restartApplication();
             }
         });
     }
@@ -429,6 +431,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
 
         if (v == item_line_login) {
+            bottomSheetDialog.dismiss();
             try {
                 // App to App Login
                 Intent LoginIntent = LineLoginApi.getLoginIntent(v.getContext(), Constants.CHANNEL_ID);
@@ -685,9 +688,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 bottomSheetDialog.dismiss();
                 SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = f_data.edit();
-                editor.putString("user_id", result.getLineProfile().getUserId());
+                editor.putString("user_code", result.getLineProfile().getUserId());
                 editor.putString("display_name", result.getLineProfile().getDisplayName());
                 editor.commit();
+                new UserAsyn().execute(UrlInterface.BASE_URL + "query_user.php?user_code=" + result.getLineProfile().getUserId());
                 recreate();
                 break;
 
@@ -698,6 +702,43 @@ public class MainActivity extends Activity implements View.OnClickListener {
             default:
                 Log.e("ERROR", "Login FAILED!");
                 Log.e("ERROR", result.getErrorData().toString());
+        }
+    }
+
+    private class UserAsyn extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                OkHttpClient _OkHttpClient = new OkHttpClient();
+
+                Request _request = new Request.Builder().url(strings[0]).get().build();
+
+                okhttp3.Response response = _OkHttpClient.newCall(_request).execute();
+
+                JSONArray array = new JSONArray(response.body().string());
+
+                JSONObject object = array.getJSONObject(0);
+                user_id_data = object.getString("user_id");
+
+                return "successfully";
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = f_data.edit();
+            editor.putString("user_id", user_id_data);
+            editor.commit();
         }
     }
 }

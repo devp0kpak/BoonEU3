@@ -15,6 +15,28 @@ import java.util.Date;
 public class CustomDateView {
     //Normal SET
 
+    public static String setReturn(String strDate)
+    {
+
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
+        String dateData = null;
+        try {
+            Calendar today = Calendar.getInstance();
+            Date date = df.parse(strDate);
+
+            today.setTime(date);
+
+            dateData = df.format(date.getTime());
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return dateData;
+    }
+
+
     public static String setDate(String strDate)
     {
 
@@ -99,9 +121,11 @@ public class CustomDateView {
 
     public static String dateThai(String strDate)
     {
-        String Months[] = { "January", "February", "March", "April",
-                "May", "June", "July", "August",
-                "September", "October", "November", "December" };
+        String Months[] =
+                {
+                        "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน",
+                        "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม",
+                        "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"};
 
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
