@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/red_400"
+    android:gravity="center"
+    tools:context=".Activity.ErrorActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <network.dhammakaya.booneu3.View.CustomTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:text="Error Loading..."/>
+
+        <network.dhammakaya.booneu3.View.CustomTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:text="Can't connect to database please refresh now!"/>
+
+        <ImageView
+            android:id="@+id/btn_refresh"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:tint="@color/white"
+            android:background="@drawable/bg_btn_refresh_error"
+            android:src="@drawable/ic_refresh"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

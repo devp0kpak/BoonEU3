@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="network.dhammakaya.booneu3">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -24,7 +24,8 @@
         <activity android:name=".Activity.MainActivity" />
         <activity android:name=".Activity.DetailActivity" />
         <activity android:name=".Activity.ViewImageActivity" />
-        <activity android:name=".Activity.CenterActivity"/>
+        <activity android:name=".Activity.CenterActivity" />
+        <activity android:name=".Activity.ErrorActivity"></activity>
     </application>
 
 </manifest>

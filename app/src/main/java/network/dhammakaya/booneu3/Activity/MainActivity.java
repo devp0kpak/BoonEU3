@@ -67,8 +67,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static network.dhammakaya.booneu3.Data.EventData.BASE_URL;
-
 public class MainActivity extends Activity implements View.OnClickListener {
 
     private MaterialCalendarView mcv;
@@ -162,11 +160,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     private void feedData() {
-        new FeedAsyn().execute(BASE_URL + "query_r1.php?country_name="+ getCountry +"&"+"calendar_date=" + getCalendar);
+        new FeedAsyn().execute(UrlInterface.BASE_URL + "query_r1.php?country_name="+ getCountry +"&"+"calendar_date=" + getCalendar);
     }
 
     private void callDot() {
-        new DotAsyn().execute(BASE_URL + "query_dot.php?country_name="+ getCountry);
+        new DotAsyn().execute(UrlInterface.BASE_URL + "query_dot.php?country_name="+ getCountry);
     }
 
     private void getExtraValue() {
@@ -597,9 +595,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
 
-            Integer eventCount = eventData.size();
-
             if (result != null){
+
+                Integer eventCount = eventData.size();
+
                 if(eventCount.equals(0)){
                     rv_event.setVisibility(View.GONE);
                     empty_view.setVisibility(View.VISIBLE);
@@ -609,8 +608,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     rv_event.setAdapter(new RecyclerViewAdapter(eventData,getApplicationContext()));
                 }
             } else {
-                Toast.makeText(getApplicationContext(), "Feed Data Failure", Toast.LENGTH_SHORT).show();
+                finish();
+                Intent intent = new Intent(MainActivity.this, ErrorActivity.class);
+                startActivity(intent);
             }
+
         }
     }
 
@@ -670,6 +672,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
+
+            if(result != null){
+                Log.e("DEBUG", "OK");
+            }else{
+                finish();
+                Intent intent = new Intent(MainActivity.this, ErrorActivity.class);
+                startActivity(intent);
+            }
+
         }
     }
 
@@ -735,10 +746,18 @@ public class MainActivity extends Activity implements View.OnClickListener {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = f_data.edit();
-            editor.putString("user_id", user_id_data);
-            editor.commit();
+
+            if(result != null){
+                SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = f_data.edit();
+                editor.putString("user_id", user_id_data);
+                editor.commit();
+            }else{
+                finish();
+                Intent intent = new Intent(MainActivity.this, ErrorActivity.class);
+                startActivity(intent);
+            }
+
         }
     }
 }

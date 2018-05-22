@@ -47,8 +47,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 
-import static network.dhammakaya.booneu3.Data.EventData.BASE_URL;
-
  public class DetailActivity extends Activity implements View.OnClickListener {
 
      private EventData eventData;
@@ -167,9 +165,9 @@ import static network.dhammakaya.booneu3.Data.EventData.BASE_URL;
      }
 
      private void feedData() {
-         new FeedAsyn().execute(BASE_URL + "query_r3.php?country_id="+ country_id +"&"+"center_id=" + center_id);
-         new FeedImage().execute(BASE_URL + "query_media.php?center_id="+ center_id +"&media_group=event&media_type=image&ref="+ event_id);
-         new FasvoriteAsyn().execute(BASE_URL + "query_favorite_check.php?user_id=" + user_id + "&r1_id=" +  eventData.getR1_id() );
+         new FeedAsyn().execute(UrlInterface.BASE_URL + "query_r3.php?country_id="+ country_id +"&"+"center_id=" + center_id);
+         new FeedImage().execute(UrlInterface.BASE_URL + "query_media.php?center_id="+ center_id +"&media_group=event&media_type=image&ref="+ event_id);
+         new FasvoriteAsyn().execute(UrlInterface.BASE_URL + "query_favorite_check.php?user_id=" + user_id + "&r1_id=" +  eventData.getR1_id() );
      }
 
      private void setRecyclerViewImage() {

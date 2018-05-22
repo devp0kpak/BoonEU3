@@ -14,8 +14,6 @@ public class ImageEventData implements Parcelable {
     private String event_name;
     private String media_url;
 
-    public static final String BASE_URL = "http://booncalendar.dhammakaya.network/connect/";
-
     public String getR4_id() {
         return r4_id;
     }

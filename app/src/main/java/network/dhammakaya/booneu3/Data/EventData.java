@@ -23,8 +23,6 @@ public class EventData implements Parcelable {
     private String time_stop;
     private String media_url;
 
-    public static final String BASE_URL = "http://booncalendar.dhammakaya.network/connect/";
-
     public String getR1_id() {
         return r1_id;
     }

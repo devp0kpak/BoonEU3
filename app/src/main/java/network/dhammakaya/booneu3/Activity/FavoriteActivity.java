@@ -23,11 +23,10 @@ import network.dhammakaya.booneu3.Adapter.RecyclerViewAdapter;
 import network.dhammakaya.booneu3.Data.EventData;
 import network.dhammakaya.booneu3.Data.FavoriteData;
 import network.dhammakaya.booneu3.R;
+import network.dhammakaya.booneu3.UrlInterface;
 import network.dhammakaya.booneu3.View.CustomTextView;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-
-import static network.dhammakaya.booneu3.Data.EventData.BASE_URL;
 
 public class FavoriteActivity extends Activity implements View.OnClickListener {
 
@@ -63,7 +62,7 @@ public class FavoriteActivity extends Activity implements View.OnClickListener {
     }
 
     private void feedData() {
-        new FeedAsyn().execute(BASE_URL + "query_favorite.php?user_id=" + user_id);
+        new FeedAsyn().execute(UrlInterface.BASE_URL + "query_favorite.php?user_id=" + user_id);
     }
 
     private void initView() {

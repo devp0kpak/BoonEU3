@@ -10,8 +10,6 @@ public class ContactData implements Parcelable {
     private String contact_group;
     private String contact_data;
 
-    public static final String BASE_URL = "http://booncalendar.dhammakaya.network/connect/";
-
     public String getCountry_name_en() {
         return country_name_en;
     }
