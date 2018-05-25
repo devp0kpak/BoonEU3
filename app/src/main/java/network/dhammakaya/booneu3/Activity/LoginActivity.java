@@ -65,7 +65,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
 
     private void checkLogin() {
         SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
-        user_id = f_data.getString("user_id", null);
+        user_id = f_data.getString("user_id", "null");
 
 
         if(!user_id.equals("null")){
@@ -77,11 +77,11 @@ public class LoginActivity extends Activity implements View.OnClickListener{
             Log.e("POINT","||||||||||||||||||||||||||||||||||||||||||||||||||||||||part-12");
             Toast.makeText(this,"Please Login",Toast.LENGTH_SHORT).show();
         }
-        else {
-            Log.e("POINT","||||||||||||||||||||||||||||||||||||||||||||||||||||||||part-13");
+//        else {
+//            Log.e("POINT","||||||||||||||||||||||||||||||||||||||||||||||||||||||||part-13");
 //            finish();
 //            startActivity(new Intent(getApplicationContext(), ErrorActivity.class));
-        }
+//        }
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
