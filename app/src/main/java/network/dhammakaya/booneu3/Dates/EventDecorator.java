@@ -8,17 +8,18 @@ import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import com.prolificinteractive.materialcalendarview.spans.DotSpan;
 
+import java.util.Collection;
 import java.util.HashSet;
 
 public class EventDecorator implements DayViewDecorator {
 
     private int color;
-    private HashSet<CalendarDay> dates;
+    private final HashSet<CalendarDay> dates;
     private Context context;
 
-    public EventDecorator(int color, HashSet<CalendarDay> dates, Context context) {
+    public EventDecorator(int color, Context context,Collection<CalendarDay> dates) {
         this.color = color;
-        this.dates = dates;
+        this.dates = new HashSet<>(dates);
         this.context = context;
     }
 

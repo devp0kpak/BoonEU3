@@ -22,7 +22,6 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.linecorp.linesdk.api.LineApiClient;
-import com.linecorp.linesdk.api.LineApiClientBuilder;
 import com.linecorp.linesdk.auth.LineLoginApi;
 import com.linecorp.linesdk.auth.LineLoginResult;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
@@ -39,17 +38,12 @@ import java.lang.reflect.Type;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 
-import network.dhammakaya.booneu3.Adapter.ImageEventAdapter;
 import network.dhammakaya.booneu3.Adapter.RecyclerViewAdapter;
-import network.dhammakaya.booneu3.Data.DotData;
 import network.dhammakaya.booneu3.Data.EventData;
-import network.dhammakaya.booneu3.Data.UserData;
 import network.dhammakaya.booneu3.Dates.EventDecorator;
 import network.dhammakaya.booneu3.Dates.OneDayDecorator;
 import network.dhammakaya.booneu3.Line.Constants;
@@ -57,15 +51,8 @@ import network.dhammakaya.booneu3.R;
 import network.dhammakaya.booneu3.UrlInterface;
 import network.dhammakaya.booneu3.View.CustomDateView;
 import network.dhammakaya.booneu3.View.CustomTextView;
-import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
@@ -128,12 +115,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private String user_id_data;
 
     private ArrayList<EventData> eventData;
-    private List<DotData> dotData;
+    private ArrayList<CalendarDay> datess;
+
     private EventData eventData_data;
     private static LineApiClient lineApiClient;
     private static final int REQUEST_CODE = 1;
 
     private AlertDialog dialog;
+
+    private String Log_S_link;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,27 +134,32 @@ public class MainActivity extends Activity implements View.OnClickListener {
         initView();
         setBottomSheet();
         setCurrentDay();
+        Log.e("POINT","part-2");
         customCalendar();
         //setRecyclerView();
+        Log.e("POINT","part-3");
         initListener();
+        Log.e("POINT","part-4");
         setTextFromExtra();
+        Log.e("POINT","part-5");
         setTextFromFile();
+        Log.e("POINT","part-6");
         setFlagCountry();
-        callDot();
+        Log.e("POINT","part-7");
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
         feedData();
+        callDate();
     }
 
     private void feedData() {
-        new FeedAsyn().execute(UrlInterface.BASE_URL + "query_r1.php?country_name="+ getCountry +"&"+"calendar_date=" + getCalendar);
-    }
-
-    private void callDot() {
-        new DotAsyn().execute(UrlInterface.BASE_URL + "query_dot.php?country_name="+ getCountry);
+        new FeedAsyn().execute(UrlInterface.BASE_URL_A + "query_r1.php?country_name="+ getCountry +"&"+"calendar_date=" + getCalendar);
+        Log_S_link = UrlInterface.BASE_URL_A + "query_r1.php?country_name="+ getCountry +"&"+"calendar_date=" + getCalendar;
+        Log.e("LINK", Log_S_link);
     }
 
     private void getExtraValue() {
@@ -250,12 +245,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         tv_month_e.setText(monthFormat.format(c));
         tv_year_e.setText(yearFormat.format(c));
         getCalendar = dateFull.format(c);
-    }
-
-    private HashSet<CalendarDay> getCalendarDaysSet(Calendar cal1) {
-        HashSet<CalendarDay> setDays = new HashSet<>();
-        setDays.add(CalendarDay.from(cal1));
-        return setDays;
     }
 
     private void customCalendar() {
@@ -389,8 +378,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         empty_view = (CustomTextView) findViewById(R.id.empty_view);
 
         rv_event = (RecyclerView) findViewById(R.id.rv_event);
-
-        dotData = new ArrayList<>();
 
 
     }
@@ -607,6 +594,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     empty_view.setVisibility(View.GONE);
                     rv_event.setAdapter(new RecyclerViewAdapter(eventData,getApplicationContext()));
                 }
+
             } else {
                 finish();
                 Intent intent = new Intent(MainActivity.this, ErrorActivity.class);
@@ -616,73 +604,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
     }
 
-    public class DotAsyn extends AsyncTask<String, Void, String> {
-
-        @Override
-        protected String doInBackground(String... strings) {
-            try {
-
-                OkHttpClient _OkHttpClient = new OkHttpClient();
-
-                Request _request = new Request.Builder().url(strings[0]).get().build();
-
-                okhttp3.Response _response = _OkHttpClient.newCall(_request).execute();
-
-                JSONArray array = new JSONArray(_response.body().string());
-
-                for (int i=0; i<array.length();i++) {
-
-                    JSONObject object = array.getJSONObject(i);
-
-                    DotData data = new DotData(
-                            object.getString("r1_id"),
-                            object.getString("country_name_en"),
-                            object.getString("calendar_date")
-                    );
-
-                    dotData.add(data);
-
-                    dotList = object.getString("calendar_date");
-                    int Y = Integer.parseInt(CustomDateView.setY(dotList));
-                    int M = Integer.parseInt(CustomDateView.setM(dotList));
-                    int D = Integer.parseInt(CustomDateView.setD(dotList));
-
-                    Calendar cal1 = Calendar.getInstance();
-                    cal1.set(Y,M,D);
-
-                    HashSet<CalendarDay> setDays = getCalendarDaysSet(cal1);
-
-                    int myColor = R.color.color_point_span;
-
-                    mcv.addDecorator(new EventDecorator(myColor,setDays,getApplicationContext()));
-
-                }
-
-                return "successfully";
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-
-            if(result != null){
-                Log.e("DEBUG", "OK");
-            }else{
-                finish();
-                Intent intent = new Intent(MainActivity.this, ErrorActivity.class);
-                startActivity(intent);
-            }
-
-        }
-    }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -702,7 +623,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 editor.putString("user_code", result.getLineProfile().getUserId());
                 editor.putString("display_name", result.getLineProfile().getDisplayName());
                 editor.commit();
-                new UserAsyn().execute(UrlInterface.BASE_URL + "query_user.php?user_code=" + result.getLineProfile().getUserId());
+                new UserAsyn().execute(UrlInterface.BASE_URL_A + "query_user.php?user_code=" + result.getLineProfile().getUserId());
                 recreate();
                 break;
 
@@ -714,6 +635,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 Log.e("ERROR", "Login FAILED!");
                 Log.e("ERROR", result.getErrorData().toString());
         }
+    }
+
+    private void callDate() {
+        new DateAsyn().execute(UrlInterface.BASE_URL_A + "query_dot.php?country_name="+ getCountry);
     }
 
     private class UserAsyn extends AsyncTask<String, Void, String> {
@@ -730,6 +655,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 JSONArray array = new JSONArray(response.body().string());
 
                 JSONObject object = array.getJSONObject(0);
+
                 user_id_data = object.getString("user_id");
 
                 return "successfully";
@@ -748,15 +674,77 @@ public class MainActivity extends Activity implements View.OnClickListener {
             super.onPostExecute(result);
 
             if(result != null){
+
                 SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = f_data.edit();
                 editor.putString("user_id", user_id_data);
                 editor.commit();
-            }else{
+
+            } else {
+
                 finish();
                 Intent intent = new Intent(MainActivity.this, ErrorActivity.class);
                 startActivity(intent);
+
             }
+
+        }
+    }
+
+    public class DateAsyn extends AsyncTask<String, Void, List<CalendarDay>> {
+
+        @Override
+        protected List<CalendarDay> doInBackground(String... strings) {
+            try {
+
+                OkHttpClient _OkHttpClient = new OkHttpClient();
+
+                Request _request = new Request.Builder().url(strings[0]).get().build();
+
+                okhttp3.Response _response = _OkHttpClient.newCall(_request).execute();
+
+                JSONArray array = new JSONArray(_response.body().string());
+
+                ArrayList<CalendarDay> datese = new ArrayList<>();
+
+                for (int i=0; i<array.length();i++) {
+
+                    JSONObject object = array.getJSONObject(i);
+
+                    dotList = object.getString("calendar_date");
+                    int Y = Integer.parseInt(CustomDateView.setY(dotList));
+                    int M = Integer.parseInt(CustomDateView.setM(dotList));
+                    int D = Integer.parseInt(CustomDateView.setD(dotList));
+
+                    Calendar cal1 = Calendar.getInstance();
+                    cal1.set(Y, M, D);
+
+                    datese.add(CalendarDay.from(cal1));
+
+                }
+
+                return datese;
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(List<CalendarDay> calendarDays) {
+            super.onPostExecute(calendarDays);
+
+            if (isFinishing()) {
+                return;
+            }
+
+            int myColor = R.color.color_point_span;
+
+            mcv.addDecorator(new EventDecorator(myColor, getApplicationContext(), calendarDays));
 
         }
     }

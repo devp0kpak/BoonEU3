@@ -2,14 +2,11 @@
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Application;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,10 +18,6 @@ import com.google.gson.reflect.TypeToken;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -32,8 +25,6 @@ import java.util.List;
 
 import network.dhammakaya.booneu3.Adapter.ContactAdapter;
 import network.dhammakaya.booneu3.Adapter.ImageEventAdapter;
-import network.dhammakaya.booneu3.Adapter.PhotoAdapter;
-import network.dhammakaya.booneu3.Adapter.RecyclerViewAdapter;
 import network.dhammakaya.booneu3.Data.ContactData;
 import network.dhammakaya.booneu3.Data.EventData;
 import network.dhammakaya.booneu3.Data.FavoriteData;
@@ -153,7 +144,7 @@ import okhttp3.RequestBody;
          btn_like.setOnLikeListener(new OnLikeListener() {
              @Override
              public void liked(LikeButton likeButton) {
-                 new InsertAsyn().execute(UrlInterface.BASE_URL + "insert_favorite.php?user_id=" + user_id  + "&r1_id=" + r1_id);
+                 new InsertAsyn().execute(UrlInterface.BASE_URL_A + "insert_favorite.php?user_id=" + user_id  + "&r1_id=" + r1_id);
                  recreate();
              }
 
@@ -165,9 +156,9 @@ import okhttp3.RequestBody;
      }
 
      private void feedData() {
-         new FeedAsyn().execute(UrlInterface.BASE_URL + "query_r3.php?country_id="+ country_id +"&"+"center_id=" + center_id);
-         new FeedImage().execute(UrlInterface.BASE_URL + "query_media.php?center_id="+ center_id +"&media_group=event&media_type=image&ref="+ event_id);
-         new FasvoriteAsyn().execute(UrlInterface.BASE_URL + "query_favorite_check.php?user_id=" + user_id + "&r1_id=" +  eventData.getR1_id() );
+         new FeedAsyn().execute(UrlInterface.BASE_URL_A + "query_r3.php?country_id="+ country_id +"&"+"center_id=" + center_id);
+         new FeedImage().execute(UrlInterface.BASE_URL_A + "query_media.php?center_id="+ center_id +"&media_group=event&media_type=image&ref="+ event_id);
+         new FasvoriteAsyn().execute(UrlInterface.BASE_URL_A + "query_favorite_check.php?user_id=" + user_id + "&r1_id=" +  eventData.getR1_id() );
      }
 
      private void setRecyclerViewImage() {
@@ -209,13 +200,13 @@ import okhttp3.RequestBody;
 
         if (v == btn_favorite) {
             //startDialogConfirmFavorite();
-            new InsertAsyn().execute(UrlInterface.BASE_URL + "insert_favorite.php?user_id=" + user_id  + "&r1_id=" + r1_id);
+            new InsertAsyn().execute(UrlInterface.BASE_URL_A + "insert_favorite.php?user_id=" + user_id  + "&r1_id=" + r1_id);
             //Toast.makeText(DetailActivity.this, "user_id : " + user_id + "\n r1_id : " + r1_id, Toast.LENGTH_SHORT).show();
             recreate();
         }
 
          if (v == btn_favorite_hide) {
-             new InsertAsyn().execute(UrlInterface.BASE_URL + "insert_favorite.php?user_id=" + user_id  + "&r1_id=" + r1_id);
+             new InsertAsyn().execute(UrlInterface.BASE_URL_A + "insert_favorite.php?user_id=" + user_id  + "&r1_id=" + r1_id);
              //Toast.makeText(DetailActivity.this, "user_id : " + user_id + "\n r1_id : " + r1_id, Toast.LENGTH_SHORT).show();
              recreate();
          }

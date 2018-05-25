@@ -19,8 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import network.dhammakaya.booneu3.Adapter.FavoriteAdapter;
-import network.dhammakaya.booneu3.Adapter.RecyclerViewAdapter;
-import network.dhammakaya.booneu3.Data.EventData;
 import network.dhammakaya.booneu3.Data.FavoriteData;
 import network.dhammakaya.booneu3.R;
 import network.dhammakaya.booneu3.UrlInterface;
@@ -62,7 +60,7 @@ public class FavoriteActivity extends Activity implements View.OnClickListener {
     }
 
     private void feedData() {
-        new FeedAsyn().execute(UrlInterface.BASE_URL + "query_favorite.php?user_id=" + user_id);
+        new FeedAsyn().execute(UrlInterface.BASE_URL_A + "query_favorite.php?user_id=" + user_id);
     }
 
     private void initView() {
