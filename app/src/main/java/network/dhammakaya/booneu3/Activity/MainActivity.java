@@ -279,7 +279,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 tv_month_e.setText(monthFormat.format(c.getTime()));
                 tv_year_e.setText(yearFormat.format(c.getTime()));
                 getCalendar = dateFull.format(c.getTime());
-                Toast.makeText(getApplicationContext(),getCalendar,Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,getCalendar,Toast.LENGTH_SHORT).show();
                 feedData();
             }
         });
@@ -592,7 +592,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 } else {
                     rv_event.setVisibility(View.VISIBLE);
                     empty_view.setVisibility(View.GONE);
-                    rv_event.setAdapter(new RecyclerViewAdapter(eventData,getApplicationContext()));
+                    rv_event.setAdapter(new RecyclerViewAdapter(eventData,MainActivity.this));
                 }
 
             } else {
@@ -744,7 +744,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             int myColor = R.color.color_point_span;
 
-            mcv.addDecorator(new EventDecorator(myColor, getApplicationContext(), calendarDays));
+            mcv.addDecorator(new EventDecorator(myColor, MainActivity.this, calendarDays));
 
         }
     }

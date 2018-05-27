@@ -1,12 +1,11 @@
 package network.dhammakaya.booneu3.View;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import network.dhammakaya.booneu3.Activity.DetailActivity;
@@ -31,9 +30,11 @@ public class ViewHolder extends RecyclerView.ViewHolder {
 
     private Context context;
 
-    public ViewHolder(final Context context, View itemView) {
+    public ViewHolder(View itemView, final Context context) {
         super(itemView);
         this.context = context;
+
+        Log.e("LAST","PART-1");
 
         iv_event_image = (CircleImageView) itemView.findViewById(R.id.iv_event_image);
         tv_event_name = (CustomTextView) itemView.findViewById(R.id.tv_event_name);
@@ -46,10 +47,14 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                        Log.e("LAST","PART-2");
                 Intent intent = new Intent(context, DetailActivity.class);
+                        Log.e("LAST","PART-3");
                 intent.putExtra("event_data", (EventData) btn_event.getTag(R.id.btn_event));
 //                Toast.makeText(ViewHolder.this.context, "Hello", Toast.LENGTH_SHORT).show();
+                        Log.e("LAST","PART-4");
                 context.startActivity(intent);
+                        Log.e("LAST","PART-5");
             }
         });
 

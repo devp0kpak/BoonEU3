@@ -8,23 +8,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 import network.dhammakaya.booneu3.Data.EventData;
 import network.dhammakaya.booneu3.R;
 import network.dhammakaya.booneu3.View.CustomDateView;
 import network.dhammakaya.booneu3.View.ViewHolder;
-import retrofit2.Callback;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
 
@@ -39,7 +35,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.view_item_event, parent, false);
-        return new ViewHolder(context,v);
+        return new ViewHolder(v,context);
     }
 
     @Override
