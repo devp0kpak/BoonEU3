@@ -1,18 +1,11 @@
 package network.dhammakaya.booneu3.View;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import network.dhammakaya.booneu3.Activity.DetailActivity;
-import network.dhammakaya.booneu3.Activity.ViewImageActivity;
-import network.dhammakaya.booneu3.Data.EventData;
-import network.dhammakaya.booneu3.Data.FavoriteData;
-import network.dhammakaya.booneu3.Data.ImageEventData;
 import network.dhammakaya.booneu3.R;
 
 public class FavoriteViewHolder extends RecyclerView.ViewHolder{
@@ -40,16 +33,16 @@ public class FavoriteViewHolder extends RecyclerView.ViewHolder{
         tv_event_time_stop = (CustomTextView) itemView.findViewById(R.id.tv_event_time_stop);
         btn_event = (FrameLayout) itemView.findViewById(R.id.btn_event);
         tv_status_count  = (CustomTextView) itemView.findViewById(R.id.tv_status_count);
-
+/*
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, DetailActivity.class);
                 intent.putExtra("event_data", (FavoriteData) btn_event.getTag(R.id.btn_event));
-//                Toast.makeText(ViewHolder.this.context, "Hello", Toast.LENGTH_SHORT).show();
                 context.startActivity(intent);
             }
         });
+*/
 
     }
 

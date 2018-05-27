@@ -54,6 +54,7 @@ import okhttp3.RequestBody;
      private CustomTextView empty_view;
      private CustomTextView empty_view_image;
      private CustomTextView btn_favorite_hide;
+     private CustomTextView btn_detail_from_db;
 
      private LinearLayout ll_center;
      private LinearLayout btn_ok;
@@ -80,6 +81,7 @@ import okhttp3.RequestBody;
      private ArrayList<ContactData> contactData;
      private ArrayList<ImageEventData> imageEventData;
      private ArrayList<FavoriteData> favoriteData;
+     private ArrayList<EventData> event2Data;
 
      @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,6 +128,7 @@ import okhttp3.RequestBody;
          empty_view = (CustomTextView) findViewById(R.id.empty_view);
          empty_view_image = (CustomTextView) findViewById(R.id.empty_view_image);
          btn_favorite_hide = (CustomTextView) findViewById(R.id.btn_favorite_hide);
+         btn_detail_from_db = (CustomTextView) findViewById(R.id.btn_detail_from_db);
 
          ll_center = (LinearLayout) findViewById(R.id.ll_center);
 
@@ -140,6 +143,7 @@ import okhttp3.RequestBody;
          btn_favorite.setOnClickListener(this);
          ll_center.setOnClickListener(this);
          btn_favorite_hide.setOnClickListener(this);
+         btn_detail_from_db.setOnClickListener(this);
 
          btn_like.setOnLikeListener(new OnLikeListener() {
              @Override
@@ -158,7 +162,8 @@ import okhttp3.RequestBody;
      private void feedData() {
          new FeedAsyn().execute(UrlInterface.BASE_URL_A + "query_r3.php?country_id="+ country_id +"&"+"center_id=" + center_id);
          new FeedImage().execute(UrlInterface.BASE_URL_A + "query_media.php?center_id="+ center_id +"&media_group=event&media_type=image&ref="+ event_id);
-         new FasvoriteAsyn().execute(UrlInterface.BASE_URL_A + "query_favorite_check.php?user_id=" + user_id + "&r1_id=" +  eventData.getR1_id() );
+         new FasvoriteAsyn().execute(UrlInterface.BASE_URL_A + "query_favorite_check.php?user_id=" + user_id + "&r1_id=" +  eventData.getR1_id());
+//         new FeedDetailAsyn().execute(UrlInterface.BASE_URL_A + "query_detail_url.php?r1_id=" +  eventData.getR1_id());
      }
 
      private void setRecyclerViewImage() {
@@ -245,6 +250,46 @@ import okhttp3.RequestBody;
              }
          });
 
+     }
+
+     private class FeedDetailAsyn extends AsyncTask<String, Void, String> {
+
+         @Override
+         protected String doInBackground(String... strings) {
+             try {
+                 OkHttpClient _OkHttpClient = new OkHttpClient();
+
+                 Request _request = new Request.Builder().url(strings[0]).get().build();
+
+                 okhttp3.Response _response = _OkHttpClient.newCall(_request).execute();
+
+                 String _result = _response.body().string();
+
+                 Gson _gson = new Gson();
+
+                 Type type = new TypeToken<List<EventData>>() {}.getType();
+
+                 event2Data = _gson.fromJson(_result, type);
+
+                 return "successfully";
+
+             } catch (IOException e) {
+                 e.printStackTrace();
+             }
+
+             return null;
+         }
+
+         @Override
+         protected void onPostExecute(String result) {
+             super.onPostExecute(result);
+
+             if (result != null) {
+
+             } else {
+                 Toast.makeText(getApplicationContext(), "Feed Data Failure", Toast.LENGTH_SHORT).show();
+             }
+         }
      }
 
      private class FeedAsyn extends AsyncTask<String, Void, String> {

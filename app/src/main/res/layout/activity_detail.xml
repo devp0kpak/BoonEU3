@@ -212,6 +212,7 @@
             android:layout_marginTop="15dp">
 
             <network.dhammakaya.booneu3.View.CustomTextView
+                android:id="@+id/btn_detail_from_db"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
@@ -223,20 +224,6 @@
                 android:textColor="@color/orange_600"
                 android:textSize="20sp"
                 android:text="รายละเอียด"/>
-
-            <network.dhammakaya.booneu3.View.CustomTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:padding="10dp"
-                android:gravity="center"
-                android:background="@drawable/bg_btn_detail"
-                android:drawablePadding="5dp"
-                android:drawableStart="@drawable/ic_event_note"
-                android:drawableTint="@color/orange_600"
-                android:textColor="@color/orange_600"
-                android:textSize="20sp"
-                android:text="กำหนดการ"/>
 
         </LinearLayout>
 

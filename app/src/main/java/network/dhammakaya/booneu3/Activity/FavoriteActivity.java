@@ -124,10 +124,10 @@ public class FavoriteActivity extends Activity implements View.OnClickListener {
                 } else {
                     rv_event.setVisibility(View.VISIBLE);
                     empty_view.setVisibility(View.GONE);
-                    rv_event.setAdapter(new FavoriteAdapter(favoriteData,getApplicationContext()));
+                    rv_event.setAdapter(new FavoriteAdapter(favoriteData,FavoriteActivity.this));
                 }
             } else {
-                Toast.makeText(getApplicationContext(), "Feed Data Failure", Toast.LENGTH_SHORT).show();
+                Toast.makeText(FavoriteActivity.this, "Feed Data Failure", Toast.LENGTH_SHORT).show();
             }
         }
     }
