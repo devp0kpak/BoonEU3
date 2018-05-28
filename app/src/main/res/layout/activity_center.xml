@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="network.dhammakaya.booneu3.Activity.CenterActivity">
+    tools:context=".Activity.CenterActivity">
 
     <LinearLayout
         style="@style/ThemeTitleBar">
@@ -14,7 +14,7 @@
             android:id="@+id/iv_back_from_center"
             style="@style/ButtonBack" />
 
-        <network.dhammakaya.booneu3.View.CustomTextView
+        <net.dmceu.booneu.View.CustomTextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="80"
@@ -34,7 +34,7 @@
         android:visibility="visible"
         tools:listitem="@layout/view_item_event"/>
 
-    <network.dhammakaya.booneu3.View.CustomTextView
+    <net.dmceu.booneu.View.CustomTextView
         android:id="@+id/empty_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"

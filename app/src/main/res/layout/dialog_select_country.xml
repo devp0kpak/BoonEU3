@@ -6,7 +6,7 @@
     android:padding="15dp"
     android:orientation="vertical">
 
-    <network.dhammakaya.booneu3.View.CustomTextView
+    <net.dmceu.booneu.View.CustomTextView
         style="@style/CustomTitleTextDialog"
         android:text="เลือกประเทศ"/>
 
@@ -25,7 +25,7 @@
                 android:layout_height="23dp"
                 android:src="@drawable/austria" />
 
-            <network.dhammakaya.booneu3.View.CustomTextView
+            <net.dmceu.booneu.View.CustomTextView
                 style="@style/CustomTextCountry"
                 android:text="Austria"/>
 
@@ -41,7 +41,7 @@
 
                 android:src="@drawable/belgium" />
 
-            <network.dhammakaya.booneu3.View.CustomTextView
+            <net.dmceu.booneu.View.CustomTextView
                 style="@style/CustomTextCountry"
                 android:text="Belgium"/>
 
@@ -64,7 +64,7 @@
                 android:layout_height="23dp"
                 android:src="@drawable/denmark" />
 
-            <network.dhammakaya.booneu3.View.CustomTextView
+            <net.dmceu.booneu.View.CustomTextView
                 style="@style/CustomTextCountry"
                 android:text="Denmark"/>
 
@@ -79,7 +79,7 @@
                 android:layout_height="23dp"
                 android:src="@drawable/france" />
 
-            <network.dhammakaya.booneu3.View.CustomTextView
+            <net.dmceu.booneu.View.CustomTextView
                 style="@style/CustomTextCountry"
                 android:text="France"/>
 
@@ -102,7 +102,7 @@
                 android:layout_height="23dp"
                 android:src="@drawable/germany" />
 
-            <network.dhammakaya.booneu3.View.CustomTextView
+            <net.dmceu.booneu.View.CustomTextView
                 style="@style/CustomTextCountry"
                 android:text="Germany"/>
 
@@ -117,7 +117,7 @@
                 android:layout_height="23dp"
                 android:src="@drawable/italy" />
 
-            <network.dhammakaya.booneu3.View.CustomTextView
+            <net.dmceu.booneu.View.CustomTextView
                 style="@style/CustomTextCountry"
                 android:text="Italy"/>
 
@@ -140,7 +140,7 @@
                 android:layout_height="23dp"
                 android:src="@drawable/malta" />
 
-            <network.dhammakaya.booneu3.View.CustomTextView
+            <net.dmceu.booneu.View.CustomTextView
                 style="@style/CustomTextCountry"
                 android:text="Malta"/>
 
@@ -155,7 +155,7 @@
                 android:layout_height="23dp"
                 android:src="@drawable/netherlands" />
 
-            <network.dhammakaya.booneu3.View.CustomTextView
+            <net.dmceu.booneu.View.CustomTextView
                 style="@style/CustomTextCountry"
                 android:text="Netherlands"/>
 
@@ -178,7 +178,7 @@
                 android:layout_height="23dp"
                 android:src="@drawable/norway" />
 
-            <network.dhammakaya.booneu3.View.CustomTextView
+            <net.dmceu.booneu.View.CustomTextView
                 style="@style/CustomTextCountry"
                 android:text="Norway"/>
 
@@ -193,7 +193,7 @@
                 android:layout_height="23dp"
                 android:src="@drawable/sweden" />
 
-            <network.dhammakaya.booneu3.View.CustomTextView
+            <net.dmceu.booneu.View.CustomTextView
                 style="@style/CustomTextCountry"
                 android:text="Sweden"/>
 
@@ -216,7 +216,7 @@
                 android:layout_height="23dp"
                 android:src="@drawable/switzerland" />
 
-            <network.dhammakaya.booneu3.View.CustomTextView
+            <net.dmceu.booneu.View.CustomTextView
                 style="@style/CustomTextCountry"
                 android:text="Switzerland"/>
 
@@ -231,7 +231,7 @@
                 android:layout_height="23dp"
                 android:src="@drawable/united_kingdom" />
 
-            <network.dhammakaya.booneu3.View.CustomTextView
+            <net.dmceu.booneu.View.CustomTextView
                 style="@style/CustomTextCountry"
                 android:text="United Kingdom"/>
 

@@ -39,7 +39,7 @@
             android:orientation="vertical"
             android:gravity="center_vertical">
 
-            <network.dhammakaya.booneu3.View.CustomTextView
+            <net.dmceu.booneu.View.CustomTextView
                 android:id="@+id/tv_event_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
                 android:textColor="@color/black"
                 android:text="พิธีบูชาข้าวพระ"/>
 
-            <network.dhammakaya.booneu3.View.CustomTextView
+            <net.dmceu.booneu.View.CustomTextView
                 android:id="@+id/tv_event_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
                 android:layout_marginTop="5dp"
                 android:orientation="horizontal">
 
-                <network.dhammakaya.booneu3.View.CustomTextView
+                <net.dmceu.booneu.View.CustomTextView
                     android:id="@+id/tv_event_time_start"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -75,14 +75,14 @@
                     android:textSize="16sp"
                     android:text="9.00"/>
 
-                <network.dhammakaya.booneu3.View.CustomTextView
+                <net.dmceu.booneu.View.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawablePadding="5dp"
                     android:textSize="16sp"
                     android:text=" - "/>
 
-                <network.dhammakaya.booneu3.View.CustomTextView
+                <net.dmceu.booneu.View.CustomTextView
                     android:id="@+id/tv_event_time_stop"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -98,7 +98,7 @@
 
     </LinearLayout>
 
-    <network.dhammakaya.booneu3.View.CustomTextView
+    <net.dmceu.booneu.View.CustomTextView
         android:id="@+id/tv_status_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

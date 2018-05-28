@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="network.dhammakaya.booneu3.Activity.AboutActivity">
+    tools:context=".Activity.AboutActivity">
 
     <LinearLayout
         style="@style/ThemeTitleBar">
@@ -14,7 +14,7 @@
             android:id="@+id/iv_back_from_about"
             style="@style/ButtonBack" />
 
-        <network.dhammakaya.booneu3.View.CustomTextView
+        <net.dmceu.booneu.View.CustomTextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="80"

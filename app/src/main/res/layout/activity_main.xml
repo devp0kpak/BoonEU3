@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="100"
-    tools:context="network.dhammakaya.booneu3.Activity.MainActivity">
+    tools:context=".Activity.MainActivity">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
                     android:paddingLeft="10dp"
                     android:weightSum="100">
 
-                    <network.dhammakaya.booneu3.View.CustomTextView
+                    <net.dmceu.booneu.View.CustomTextView
                         android:id="@+id/tv_day"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -53,7 +53,7 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <network.dhammakaya.booneu3.View.CustomTextView
+                        <net.dmceu.booneu.View.CustomTextView
                             android:id="@+id/tv_month"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
                             android:textColor="@color/white"
                             android:textSize="30sp" />
 
-                        <network.dhammakaya.booneu3.View.CustomTextView
+                        <net.dmceu.booneu.View.CustomTextView
                             android:id="@+id/tv_year"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -101,7 +101,7 @@
                             app:civ_border_color="@color/white"
                             app:civ_border_width="1dp" />
 
-                        <network.dhammakaya.booneu3.View.CustomTextView
+                        <net.dmceu.booneu.View.CustomTextView
                             android:id="@+id/tv_country_name"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
@@ -165,7 +165,7 @@
 
         </LinearLayout>
 
-        <network.dhammakaya.booneu3.View.CustomTextView
+        <net.dmceu.booneu.View.CustomTextView
             android:id="@+id/tv_user_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -203,14 +203,14 @@
                 android:gravity="center"
                 android:background="@color/grey_200">
 
-                <network.dhammakaya.booneu3.View.CustomTextView
+                <net.dmceu.booneu.View.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="กิจกรรม"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
-                <network.dhammakaya.booneu3.View.CustomTextView
+                <net.dmceu.booneu.View.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -219,7 +219,7 @@
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
-                <network.dhammakaya.booneu3.View.CustomTextView
+                <net.dmceu.booneu.View.CustomTextView
                     android:id="@+id/tv_day_e"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -229,7 +229,7 @@
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
-                <network.dhammakaya.booneu3.View.CustomTextView
+                <net.dmceu.booneu.View.CustomTextView
                     android:id="@+id/tv_month_e"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -239,7 +239,7 @@
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
-                <network.dhammakaya.booneu3.View.CustomTextView
+                <net.dmceu.booneu.View.CustomTextView
                     android:id="@+id/tv_year_e"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -261,7 +261,7 @@
                 android:visibility="visible"
                 tools:listitem="@layout/view_item_event"/>
 
-            <network.dhammakaya.booneu3.View.CustomTextView
+            <net.dmceu.booneu.View.CustomTextView
                 android:id="@+id/empty_view"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"

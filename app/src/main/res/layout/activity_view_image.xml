@@ -36,7 +36,7 @@
             android:src="@drawable/ic_arrow_back_black_24dp"
             android:tint="#ffffff"/>
 
-        <network.dhammakaya.booneu3.View.CustomTextView
+        <net.dmceu.booneu.View.CustomTextView
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="55dp"

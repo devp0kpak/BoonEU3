@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <network.dhammakaya.booneu3.View.CustomTextView
+    <net.dmceu.booneu.View.CustomTextView
         android:id="@+id/item_line_logout"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -20,7 +20,7 @@
         android:padding="@dimen/activity_horizontal_margin"
         android:text="ล็อกเอาท์" />
 
-    <network.dhammakaya.booneu3.View.CustomTextView
+    <net.dmceu.booneu.View.CustomTextView
         android:id="@+id/item_line_login"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -34,7 +34,7 @@
         android:padding="@dimen/activity_horizontal_margin"
         android:text="ล็อกอินด้วย LINE" />
 
-    <network.dhammakaya.booneu3.View.CustomTextView
+    <net.dmceu.booneu.View.CustomTextView
         android:id="@+id/item_about"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -47,7 +47,7 @@
         android:padding="@dimen/activity_horizontal_margin"
         android:text="About" />
 
-    <network.dhammakaya.booneu3.View.CustomTextView
+    <net.dmceu.booneu.View.CustomTextView
         android:id="@+id/item_exit"
         android:layout_width="match_parent"
         android:layout_height="60dp"

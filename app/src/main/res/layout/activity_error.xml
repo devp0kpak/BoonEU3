@@ -14,7 +14,7 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <network.dhammakaya.booneu3.View.CustomTextView
+        <net.dmceu.booneu.View.CustomTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -22,7 +22,7 @@
             android:textSize="30sp"
             android:text="Error Loading..."/>
 
-        <network.dhammakaya.booneu3.View.CustomTextView
+        <net.dmceu.booneu.View.CustomTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"

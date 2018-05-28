@@ -6,7 +6,7 @@
     android:padding="15dp"
     android:orientation="vertical">
 
-    <network.dhammakaya.booneu3.View.CustomTextView
+    <net.dmceu.booneu.View.CustomTextView
         style="@style/CustomTitleTextDialog"
         android:text="เลือกภาษา"/>
 
@@ -18,7 +18,7 @@
             android:layout_height="23dp"
             android:src="@drawable/thailand"/>
 
-        <network.dhammakaya.booneu3.View.CustomTextView
+        <net.dmceu.booneu.View.CustomTextView
             style="@style/CustomTextLanguage"
             android:text="ภาษาไทย"/>
 
@@ -32,7 +32,7 @@
             android:layout_height="23dp"
             android:src="@drawable/united_kingdom" />
 
-        <network.dhammakaya.booneu3.View.CustomTextView
+        <net.dmceu.booneu.View.CustomTextView
             style="@style/CustomTextLanguage"
             android:text="English"/>
 

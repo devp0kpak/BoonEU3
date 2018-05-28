@@ -6,7 +6,7 @@
     android:padding="15dp"
     android:orientation="vertical">
 
-    <network.dhammakaya.booneu3.View.CustomTextView
+    <net.dmceu.booneu.View.CustomTextView
         style="@style/CustomTitleTextDialog"
         android:text="เลือกมุมมอง"/>
 
@@ -25,7 +25,7 @@
             android:tint="@color/orange_500"
             android:src="@drawable/ic_calendar" />
 
-        <network.dhammakaya.booneu3.View.CustomTextView
+        <net.dmceu.booneu.View.CustomTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/orange_500"
@@ -50,7 +50,7 @@
             android:tint="@color/orange_500"
             android:src="@drawable/ic_list" />
 
-        <network.dhammakaya.booneu3.View.CustomTextView
+        <net.dmceu.booneu.View.CustomTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/orange_500"

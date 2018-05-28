@@ -6,7 +6,7 @@
     android:padding="15dp"
     android:orientation="vertical">
 
-    <network.dhammakaya.booneu3.View.CustomTextView
+    <net.dmceu.booneu.View.CustomTextView
         style="@style/CustomTitleTextDialog"
         android:text="เพิ่มในรายการโปรด"/>
 
@@ -20,7 +20,7 @@
             android:tint="@color/green_500"
             android:src="@drawable/ic_check_circle"/>
 
-        <network.dhammakaya.booneu3.View.CustomTextView
+        <net.dmceu.booneu.View.CustomTextView
             style="@style/CustomTextLanguage"
             android:textColor="@color/green_500"
             android:text="ตกลง"/>
@@ -37,7 +37,7 @@
             android:tint="@color/red_500"
             android:src="@drawable/ic_cancel" />
 
-        <network.dhammakaya.booneu3.View.CustomTextView
+        <net.dmceu.booneu.View.CustomTextView
             style="@style/CustomTextLanguage"
             android:textColor="@color/red_500"
             android:text="ยกเลิก"/>

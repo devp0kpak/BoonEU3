@@ -18,7 +18,7 @@
         android:tint="@color/white"
         android:src="@drawable/ic_call" />
 
-    <network.dhammakaya.booneu3.View.CustomTextView
+    <net.dmceu.booneu.View.CustomTextView
         android:id="@+id/tv_contact_data"
         android:layout_marginLeft="10dp"
         android:textSize="22sp"
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:text="08-0808-0800"/>
 
-    <network.dhammakaya.booneu3.View.CustomTextView
+    <net.dmceu.booneu.View.CustomTextView
         android:id="@+id/tv_contact_position"
         android:layout_marginLeft="10dp"
         android:paddingLeft="5dp"
