@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -80,7 +79,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
             e.printStackTrace();
         }
 
-        Toast.makeText(context, "This date : " + yearA+monthA+dayA + "\n Date Data : " + dayB, Toast.LENGTH_SHORT).show();
+        // Toast.makeText(context, "This date : " + yearA+monthA+dayA + "\n Date Data : " + dayB, Toast.LENGTH_SHORT).show();
 
         //dateA is Today
         //dateB is Event day

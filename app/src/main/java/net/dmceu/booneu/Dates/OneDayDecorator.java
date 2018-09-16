@@ -1,5 +1,6 @@
 package net.dmceu.booneu.Dates;
 
+import android.content.Context;
 import android.graphics.Typeface;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
@@ -18,6 +19,7 @@ public class OneDayDecorator implements DayViewDecorator {
 
     private final int color = 1;
     private CalendarDay date;
+    private Context mContext;
 
     public OneDayDecorator() {
         date = CalendarDay.today();
@@ -32,6 +34,7 @@ public class OneDayDecorator implements DayViewDecorator {
     public void decorate(DayViewFacade view) {
         view.addSpan(new StyleSpan(Typeface.BOLD));
         view.addSpan(new RelativeSizeSpan(1.5f));
+
     }
 
     public void setDate(Date date) {

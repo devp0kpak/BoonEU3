@@ -10,234 +10,268 @@
         style="@style/CustomTitleTextDialog"
         android:text="เลือกประเทศ"/>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
+        android:layout_height="match_parent">
         <LinearLayout
-            android:id="@+id/btn_austria"
-            style="@style/CustomLayoutButtonCountry">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:src="@drawable/austria" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
 
-            <net.dmceu.booneu.View.CustomTextView
-                style="@style/CustomTextCountry"
-                android:text="Austria"/>
+                <LinearLayout
+                    android:id="@+id/btn_austria"
+                    style="@style/CustomLayoutButtonCountry">
+
+                    <ImageView
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:src="@drawable/austria" />
+
+                    <net.dmceu.booneu.View.CustomTextView
+                        style="@style/CustomTextCountry"
+                        android:text="Austria"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_belgium"
+                    style="@style/CustomLayoutButtonCountry">
+
+                    <ImageView
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+
+                        android:src="@drawable/belgium" />
+
+                    <net.dmceu.booneu.View.CustomTextView
+                        style="@style/CustomTextCountry"
+                        android:text="Belgium"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:id="@+id/btn_denmark"
+                    style="@style/CustomLayoutButtonCountry">
+
+                    <ImageView
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:src="@drawable/denmark" />
+
+                    <net.dmceu.booneu.View.CustomTextView
+                        style="@style/CustomTextCountry"
+                        android:text="Denmark"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_france"
+                    style="@style/CustomLayoutButtonCountry">
+
+                    <ImageView
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:src="@drawable/france" />
+
+                    <net.dmceu.booneu.View.CustomTextView
+                        style="@style/CustomTextCountry"
+                        android:text="France"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:id="@+id/btn_germany"
+                    style="@style/CustomLayoutButtonCountry">
+
+                    <ImageView
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:src="@drawable/germany" />
+
+                    <net.dmceu.booneu.View.CustomTextView
+                        style="@style/CustomTextCountry"
+                        android:text="Germany"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_italy"
+                    style="@style/CustomLayoutButtonCountry">
+
+                    <ImageView
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:src="@drawable/italy" />
+
+                    <net.dmceu.booneu.View.CustomTextView
+                        style="@style/CustomTextCountry"
+                        android:text="Italy"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:id="@+id/btn_malta"
+                    style="@style/CustomLayoutButtonCountry">
+
+                    <ImageView
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:src="@drawable/malta" />
+
+                    <net.dmceu.booneu.View.CustomTextView
+                        style="@style/CustomTextCountry"
+                        android:text="Malta"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_netherlands"
+                    style="@style/CustomLayoutButtonCountry">
+
+                    <ImageView
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:src="@drawable/netherlands" />
+
+                    <net.dmceu.booneu.View.CustomTextView
+                        style="@style/CustomTextCountry"
+                        android:text="Netherlands"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:id="@+id/btn_norway"
+                    style="@style/CustomLayoutButtonCountry">
+
+                    <ImageView
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:src="@drawable/norway" />
+
+                    <net.dmceu.booneu.View.CustomTextView
+                        style="@style/CustomTextCountry"
+                        android:text="Norway"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_sweden"
+                    style="@style/CustomLayoutButtonCountry">
+
+                    <ImageView
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:src="@drawable/sweden" />
+
+                    <net.dmceu.booneu.View.CustomTextView
+                        style="@style/CustomTextCountry"
+                        android:text="Sweden"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:id="@+id/btn_switzerland"
+                    style="@style/CustomLayoutButtonCountry">
+
+                    <ImageView
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:src="@drawable/switzerland" />
+
+                    <net.dmceu.booneu.View.CustomTextView
+                        style="@style/CustomTextCountry"
+                        android:text="Switzerland"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_uk"
+                    style="@style/CustomLayoutButtonCountry">
+
+                    <ImageView
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:src="@drawable/united_kingdom" />
+
+                    <net.dmceu.booneu.View.CustomTextView
+                        style="@style/CustomTextCountry"
+                        android:text="United Kingdom"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:id="@+id/btn_thailand"
+                    style="@style/CustomLayoutButtonCountry">
+
+                    <ImageView
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:src="@drawable/thailand" />
+
+                    <net.dmceu.booneu.View.CustomTextView
+                        style="@style/CustomTextCountry"
+                        android:text="Thailand"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/btn_belgium"
-            style="@style/CustomLayoutButtonCountry">
-
-            <ImageView
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-
-                android:src="@drawable/belgium" />
-
-            <net.dmceu.booneu.View.CustomTextView
-                style="@style/CustomTextCountry"
-                android:text="Belgium"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <LinearLayout
-            android:id="@+id/btn_denmark"
-            style="@style/CustomLayoutButtonCountry">
-
-            <ImageView
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:src="@drawable/denmark" />
-
-            <net.dmceu.booneu.View.CustomTextView
-                style="@style/CustomTextCountry"
-                android:text="Denmark"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/btn_france"
-            style="@style/CustomLayoutButtonCountry">
-
-            <ImageView
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:src="@drawable/france" />
-
-            <net.dmceu.booneu.View.CustomTextView
-                style="@style/CustomTextCountry"
-                android:text="France"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <LinearLayout
-            android:id="@+id/btn_germany"
-            style="@style/CustomLayoutButtonCountry">
-
-            <ImageView
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:src="@drawable/germany" />
-
-            <net.dmceu.booneu.View.CustomTextView
-                style="@style/CustomTextCountry"
-                android:text="Germany"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/btn_italy"
-            style="@style/CustomLayoutButtonCountry">
-
-            <ImageView
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:src="@drawable/italy" />
-
-            <net.dmceu.booneu.View.CustomTextView
-                style="@style/CustomTextCountry"
-                android:text="Italy"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <LinearLayout
-            android:id="@+id/btn_malta"
-            style="@style/CustomLayoutButtonCountry">
-
-            <ImageView
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:src="@drawable/malta" />
-
-            <net.dmceu.booneu.View.CustomTextView
-                style="@style/CustomTextCountry"
-                android:text="Malta"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/btn_netherlands"
-            style="@style/CustomLayoutButtonCountry">
-
-            <ImageView
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:src="@drawable/netherlands" />
-
-            <net.dmceu.booneu.View.CustomTextView
-                style="@style/CustomTextCountry"
-                android:text="Netherlands"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <LinearLayout
-            android:id="@+id/btn_norway"
-            style="@style/CustomLayoutButtonCountry">
-
-            <ImageView
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:src="@drawable/norway" />
-
-            <net.dmceu.booneu.View.CustomTextView
-                style="@style/CustomTextCountry"
-                android:text="Norway"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/btn_sweden"
-            style="@style/CustomLayoutButtonCountry">
-
-            <ImageView
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:src="@drawable/sweden" />
-
-            <net.dmceu.booneu.View.CustomTextView
-                style="@style/CustomTextCountry"
-                android:text="Sweden"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <LinearLayout
-            android:id="@+id/btn_switzerland"
-            style="@style/CustomLayoutButtonCountry">
-
-            <ImageView
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:src="@drawable/switzerland" />
-
-            <net.dmceu.booneu.View.CustomTextView
-                style="@style/CustomTextCountry"
-                android:text="Switzerland"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/btn_uk"
-            style="@style/CustomLayoutButtonCountry">
-
-            <ImageView
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:src="@drawable/united_kingdom" />
-
-            <net.dmceu.booneu.View.CustomTextView
-                style="@style/CustomTextCountry"
-                android:text="United Kingdom"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
+    </ScrollView>
 
 
 </LinearLayout>

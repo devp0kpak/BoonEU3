@@ -93,13 +93,13 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textSize="20sp"
-            android:text="v 2.0"/>
+            android:text="v 2.2"/>
         <net.dmceu.booneu.View.CustomTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textSize="20sp"
-            android:text="Update 27/05/2018"/>
+            android:text="Update 29/05/2018"/>
 
     </LinearLayout>
 

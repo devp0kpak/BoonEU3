@@ -84,6 +84,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private LinearLayout btn_sweden;
     private LinearLayout btn_switzerland;
     private LinearLayout btn_uk;
+    private LinearLayout btn_thailand;
 
     private LinearLayout btn_flag;
 
@@ -230,6 +231,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         if (country.equals("United Kingdom")) {
             im_country.setImageResource(R.drawable.united_kingdom);
         }
+        if (country.equals("Thailand")) {
+            im_country.setImageResource(R.drawable.thailand);
+        }
     }
 
     private void setCurrentDay() {
@@ -328,7 +332,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);
         dialog.show();
-        dialog.getWindow().setLayout(900, 1100);
+        dialog.getWindow().setLayout(900, 1200);
 
         btn_austria = (LinearLayout) mCountry.findViewById(R.id.btn_austria);
         btn_belgium = (LinearLayout) mCountry.findViewById(R.id.btn_belgium);
@@ -342,6 +346,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btn_sweden = (LinearLayout) mCountry.findViewById(R.id.btn_sweden);
         btn_switzerland = (LinearLayout) mCountry.findViewById(R.id.btn_switzerland);
         btn_uk = (LinearLayout) mCountry.findViewById(R.id.btn_uk);
+        btn_thailand = (LinearLayout) mCountry.findViewById(R.id.btn_thailand);
 
         btn_austria.setOnClickListener(this);
         btn_belgium.setOnClickListener(this);
@@ -355,6 +360,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btn_sweden.setOnClickListener(this);
         btn_switzerland.setOnClickListener(this);
         btn_uk.setOnClickListener(this);
+        btn_thailand.setOnClickListener(this);
     }
 
     private void initView() {
@@ -536,6 +542,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
             SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = f_data.edit();
             editor.putString("country", "United Kingdom");
+            editor.commit();
+            restartApplication();
+        }
+
+        if (v == btn_thailand) {
+            dialog.dismiss();
+            SharedPreferences f_data = getSharedPreferences("f_data", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = f_data.edit();
+            editor.putString("country", "Thailand");
             editor.commit();
             restartApplication();
         }
